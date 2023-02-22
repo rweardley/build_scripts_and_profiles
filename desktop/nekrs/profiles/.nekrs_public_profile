@@ -1,0 +1,14 @@
+PS1="\e[1;31m(NekRS: public-nekRS)\e[0m "$PS1
+
+export PATH=/usr/local/cuda/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+export CUDA_BIN_PATH=/usr/local/cuda/bin
+export CUDA_INCLUDE_DIRS=/usr/local/cuda/include
+
+export NEKRS_HOME=$HOME/NekRS/public-nekRS/nekRS
+export PATH=$NEKRS_HOME/bin:$PATH
+export NRS_RUN=$HOME/NekRS/usr_problems
+export NEK5000_TOOLS=$HOME/NekRS/Nek5000/bin
+export PATH=$NEK5000_TOOLS:$PATH
+
+alias nrs='cd $NRS_RUN && ls'

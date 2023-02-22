@@ -1,0 +1,9 @@
+PS1="\e[1;31m(MOOSE)\e[0m "$PS1
+
+export CC=mpicc
+export CXX=mpicxx
+export F90=mpif90
+export F77=mpif77
+export FC=mpif90
+export MOOSE_DIR=/home/user/moose
+export PATH=$PATH:/home/user/projects/proteus
