@@ -1,0 +1,39 @@
+NAME        FSTYPE     SIZE MOUNTPOINT                     LABEL
+loop0       squashfs     4K /snap/bare/5                   
+loop1       squashfs 148.4M /snap/chromium/2295            
+loop2       squashfs  55.1M /snap/cups/836                 
+loop3       squashfs  72.9M /snap/core22/522               
+loop4       squashfs 452.4M /snap/gnome-42-2204/56         
+loop5       squashfs 346.3M /snap/gnome-3-38-2004/115      
+loop6       squashfs 446.3M /snap/gnome-42-2204/44         
+loop7       squashfs 164.8M /snap/gnome-3-28-1804/161      
+loop8       squashfs   2.6M /snap/gnome-system-monitor/178 
+loop9       squashfs 116.7M /snap/core/14447               
+loop10      squashfs 243.8M /snap/code/119                 
+loop11      squashfs  18.5M /snap/chromium-ffmpeg/30       
+loop12      squashfs  45.9M /snap/snap-store/599           
+loop13      squashfs   219M /snap/gnome-3-34-1804/77       
+loop14      squashfs 180.1M /snap/opera/219                
+loop15      squashfs  72.9M /snap/core22/509               
+loop16      squashfs   1.5M /snap/gnome-system-monitor/181 
+loop17      squashfs 243.8M /snap/code/118                 
+loop18      squashfs    55M /snap/cups/872                 
+loop19      squashfs 180.1M /snap/opera/218                
+loop20      squashfs 346.3M /snap/gnome-3-38-2004/119      
+loop21      squashfs  55.6M /snap/core18/2679              
+loop22      squashfs  63.3M /snap/core20/1822              
+loop23      squashfs  27.1M /snap/chromium-ffmpeg/28       
+loop24      squashfs  91.7M /snap/gtk-common-themes/1535   
+loop25      squashfs  81.3M /snap/gtk-common-themes/1534   
+loop26      squashfs 116.8M /snap/core/14784               
+loop27      squashfs    46M /snap/snap-store/638           
+loop28      squashfs   149M /snap/chromium/2333            
+loop29      squashfs  63.3M /snap/core20/1778              
+loop30      squashfs  55.6M /snap/core18/2697              
+sda                    3.7T                                
+└─sda1      ext4       3.7T /media/user/Storage1           
+sdb                    3.7T                                
+└─sdb1      ext4       3.7T /media/user/Storage2           
+nvme0n1                1.8T                                
+├─nvme0n1p1 vfat       512M /boot/efi                      
+└─nvme0n1p2 ext4       1.8T /                              
