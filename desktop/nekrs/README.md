@@ -9,3 +9,11 @@ Build process (this assumes prerequisites are met e.g. cmake, CUDA, GNU compiler
 7) Adjust build/nrsconfig to suit the installation (set install directory as ~/NekRS/<version>/nekRS, and e.g. set CUDA on/off etc)
 8) Write .nekrs_<version>_profile (examples in this repo), point to it in setup/buildNek.sh
 9) from ~/NekRS/<version>, run ./setup/buildNek.sh
+
+To install Nek5000 tools, cd to ~/NekRS, then run:
+
+```
+git clone https://github.com/Nek5000/Nek5000.git
+cd Nek5000/tools
+./maketools all
+```

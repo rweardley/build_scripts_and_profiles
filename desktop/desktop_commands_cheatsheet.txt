@@ -1,0 +1,12 @@
+######## Power ########
+
+shutdown now:	sudo halt
+shutdown delay:	sudo shutdown
+reboot:		sudo reboot
+
+######## General #########
+
+open a file viewer:		xdg-open .
+
+
+
