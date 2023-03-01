@@ -1,9 +1,11 @@
 PS1="\e[1;31m(NekRS: 22.0)\e[0m "$PS1
 
-export PATH=/usr/local/cuda/bin:${PATH}
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
-export CUDA_BIN_PATH=/usr/local/cuda/bin
-export CUDA_INCLUDE_DIRS=/usr/local/cuda/include
+export PATH=$PATH:/usr/local/cuda-12.0/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.0/lib64
+
+#export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+#export CUDA_BIN_PATH=/usr/local/cuda/bin
+#export CUDA_INCLUDE_DIRS=/usr/local/cuda/include
 
 export NEKRS_HOME=$HOME/NekRS/22.0/nekRS
 export PATH=$NEKRS_HOME/bin:$PATH
