@@ -31,7 +31,15 @@ git pull
 git checkout v$petsc_version
 
 # write dot profile
-echo "source $openfoam_dir/OpenFOAM-$openfoam_version/etc/bashrc" > ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module purge" > ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load rhel8/default-icl" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load libpciaccess/0.16/gcc/qfczuq5g" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load zlib/1.2.11_system/gcc-8.4.1-gbdsc7a" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load libxml2/2.9.12/gcc/eizlvpgn" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load hwloc/2.5.0/gcc/qua3r2l4" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module load openmpi/4.1.1/gcc/mnop75he" >> ~/.openfoam_"$openfoam_profile_name"_profile
+
+echo "source $openfoam_dir/OpenFOAM-$openfoam_version/etc/bashrc" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export CC=mpicc" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export CXX=mpicxx" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export F90=mpif90" >> ~/.openfoam_"$openfoam_profile_name"_profile
@@ -41,6 +49,10 @@ echo "export PETSC_ARCH_PATH=$openfoam_dir/OpenFOAM-$openfoam_version/ThirdParty
 echo "export PETSC_DIR=\$PETSC_ARCH_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export PETSC_ARCH=DPInt32" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export LD_LIBRARY_PATH=\$PETSC_DIR/\$PETSC_ARCH/lib:\$LD_LIBRARY_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
+
+# this is a hacky fix
+echo "export LD_LIBRARY_PATH=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-x86_64_v3/gcc-11.2.0/gcc-11.2.0-en35jayfoxmdht4xqdfb7ggaqq5rzq5b/lib64:$LD_LIBRARY_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
+
 
 # source basic OpenFOAM bashrc requirements
 source ~/.openfoam_"$openfoam_profile_name"_profile
