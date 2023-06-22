@@ -51,7 +51,7 @@ echo "export PETSC_ARCH=DPInt32" >> ~/.openfoam_"$openfoam_profile_name"_profile
 echo "export LD_LIBRARY_PATH=\$PETSC_DIR/\$PETSC_ARCH/lib:\$LD_LIBRARY_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
 
 # this is a hacky fix
-echo "export LD_LIBRARY_PATH=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-x86_64_v3/gcc-11.2.0/gcc-11.2.0-en35jayfoxmdht4xqdfb7ggaqq5rzq5b/lib64:$LD_LIBRARY_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "export LD_LIBRARY_PATH=/usr/local/software/spack/spack-rhel8-20210927/opt/spack/linux-centos8-x86_64_v3/gcc-11.2.0/gcc-11.2.0-en35jayfoxmdht4xqdfb7ggaqq5rzq5b/lib64:\$LD_LIBRARY_PATH" >> ~/.openfoam_"$openfoam_profile_name"_profile
 
 
 # source basic OpenFOAM bashrc requirements
