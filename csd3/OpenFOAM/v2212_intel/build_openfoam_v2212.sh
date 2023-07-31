@@ -7,7 +7,7 @@ petsc_version="3.18.2"
 
 # don't change things below here
 
-mkdir $openfoam_dir
+mkdir -p $openfoam_dir
 cd $openfoam_dir
 
 # get OpenFOAM
