@@ -16,6 +16,12 @@ tar -xvf OpenFOAM-$openfoam_version.tgz
 rm OpenFOAM-$openfoam_version.tgz
 cd OpenFOAM-$openfoam_version
 
+# set OpenFOAM preferences for Intel compilers & MPI
+
+echo "export WM_COMPILER_TYPE=system" > $openfoam_dir/etc/prefs.sh
+echo "export WM_COMPILER=Icc" >> $openfoam_dir/etc/prefs.sh
+echo "export WM_MPLIB=INTELMPI" >> $openfoam_dir/etc/prefs.sh
+
 # get third party tools
 wget https://dl.openfoam.com/source/$openfoam_version/ThirdParty-$openfoam_version.tgz
 tar -xvf ThirdParty-$openfoam_version.tgz
