@@ -1,0 +1,4 @@
+PS1="\e[1;31m(OpenFOAM-9)\e[0m "$PS1
+
+source $HOME/OpenFOAM/OpenFOAM-9/etc/bashrc
+
