@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Remember to set .bashrc first
+# Remember to set .openfoam9_profile first
 
 cd $HOME
 
@@ -13,7 +13,7 @@ cd OpenFOAM
 git clone https://github.com/OpenFOAM/OpenFOAM-9.git
 git clone https://github.com/OpenFOAM/ThirdParty-9.git
 
-source ~/.bashrc
+source ~/.openfoam9_profile
 
 cd ThirdParty-9
 ./Allwmake 2>&1 | tee log.MakeThirdParty
