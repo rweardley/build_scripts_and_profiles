@@ -26,7 +26,7 @@ echo "export WM_MPLIB=INTELMPI" >> $openfoam_dir/OpenFOAM-$openfoam_version/etc/
 wget https://dl.openfoam.com/source/$openfoam_version/ThirdParty-$openfoam_version.tgz
 tar -xvf ThirdParty-$openfoam_version.tgz
 rm ThirdParty-$openfoam_version.tgz
-mv ThirdParty-v2212 ThirdParty
+mv ThirdParty-$openfoam_version ThirdParty
 
 # get PETSc
 cd ThirdParty/sources
