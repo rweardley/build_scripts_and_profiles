@@ -11,3 +11,11 @@ Build process:
 9)  Adjust buildNek.sh script to suit the installation (update dirname and dir)
 10) Copy .nekrs_<version>_profile to ~ from this repo (note it will be hidden due to .), point to it in setup/buildNek.sh
 11) from ~/NekRS/<version>, run ./setup/buildNek.sh, which will source the profile
+
+To make the extra NekRS tools, cd to $MY_RDS/NekRS and run
+
+`
+git clone https://github.com/Nek5000/Nek5000.git
+cd Nek5000/tools
+./maketools all
+`
