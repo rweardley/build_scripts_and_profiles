@@ -10,8 +10,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib64
 export NEKRS_HOME=$HOME/NekRS/23.0/nekRS
 export PATH=$NEKRS_HOME/bin:$PATH
 export NRS_RUN=$HOME/NekRS/usr_problems
-export NEK5000_TOOLS=$HOME/NekRS/23.0/build/3rd_party/nek5000/bin
+#export NEK5000_TOOLS=$HOME/NekRS/23.0/build/3rd_party/nek5000/bin
+export NEK5000_TOOLS=$HOME/NekRS/Nek5000/bin
 export PATH=$NEK5000_TOOLS:$PATH
 
 alias nrs='cd $NRS_RUN && ls'
-

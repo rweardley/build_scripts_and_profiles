@@ -19,6 +19,8 @@ cd Nek5000/tools
 ./maketools all
 ```
 
+If it can't get to exo2nek because it can't install prenek, try `sudo apt-get install libx11-dev libxt-dev`, or just make exo2nek specifically
+
 To install the prerequisites for a CUDA NekRS build on Ubuntu 20.04:
 
 1) GNU Compilers:
