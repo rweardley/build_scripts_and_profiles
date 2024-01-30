@@ -17,7 +17,7 @@ export ENABLE_OPENMC=false
 export ENABLE_DAGMC=false
 
 # Set number of cores for compilation
-cores=32
+export MOOSE_JOBS=32
 
 # Set installation directory
 # Cardinal will be installed in a `cardinal` directory inside this directory
@@ -49,7 +49,7 @@ cd cardinal
 
 ./scripts/get-dependencies.sh
 ./contrib/moose/scripts/update_and_rebuild_petsc.sh
-./contrib/moose/scripts/update_and_rebuild_libmesh.sh
+./contrib/moose/scripts/update_and_rebuild_libmesh.sh --with-mpi
 ./contrib/moose/scripts/update_and_rebuild_wasp.sh
 
 # Enable backends
@@ -64,6 +64,6 @@ if $OPENCL ; then
     sed -i s/"OCCA_OPENCL_ENABLED=0"/"OCCA_OPENCL_ENABLED=1"/g Makefile
 fi
 
-make -j$cores MAKEFLAGS=-j$cores
+make -j$MOOSE_JOBS MAKEFLAGS=-j$MOOSE_JOBS
 
 echo "Installation complete."
