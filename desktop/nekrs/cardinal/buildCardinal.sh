@@ -34,6 +34,7 @@ echo "export FC=mpif90" >> $HOME/.cardinal_profile
 echo "export PATH=\$PATH:/usr/local/cuda-11.8/bin" >> $HOME/.cardinal_profile	# desktop only
 echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib64" >> $HOME/.cardinal_profile	# desktop only
 echo "export CARDINAL_DIR=${INSTALL_DIR}/cardinal" >> $HOME/.cardinal_profile
+echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.cardinal_profile
 if $ENABLE_NEK ; then
     echo "export NEKRS_HOME=${INSTALL_DIR}/cardinal/install" >> $HOME/.cardinal_profile
 fi
