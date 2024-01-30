@@ -30,12 +30,12 @@ INSTALL_DIR="${PWD}"
 echo 'PS1="\e[1;31m(Cardinal)\e[0m "$PS1' > $HOME/.cardinal_profile
 echo "module purge" >> $HOME/.cardinal_profile
 echo "module load rhel8/default-amp" >> $HOME/.cardinal_profile
+echo "module load cmake/3.21.3/gcc-9.4.0-uefmx4t" >> $HOME/.cardinal_profile
 echo "export CC=mpicc" >> $HOME/.cardinal_profile
 echo "export CXX=mpicxx" >> $HOME/.cardinal_profile
 echo "export FC=mpif90" >> $HOME/.cardinal_profile
-echo "export PATH=\$PATH:/usr/local/cuda-11.8/bin" >> $HOME/.cardinal_profile	# desktop only
-echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib64" >> $HOME/.cardinal_profile	# desktop only
 echo "export CARDINAL_DIR=${INSTALL_DIR}/cardinal" >> $HOME/.cardinal_profile
+echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.cardinal_profile
 if $ENABLE_NEK ; then
     echo "export NEKRS_HOME=${INSTALL_DIR}/cardinal/install" >> $HOME/.cardinal_profile
 fi
