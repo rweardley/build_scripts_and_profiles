@@ -4,10 +4,9 @@
 version_major=23
 version_minor=0
 
-# set installation location and profile name:
+# set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 DIR_NAME=${version_major}.${version_minor}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
@@ -15,6 +14,8 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 ## Don't modify this script below this line
 
 # Write NekRS profile
+
+PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel8/default-amp" >> $HOME/.$PROFILE_NAME
