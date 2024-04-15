@@ -7,9 +7,9 @@ version_minor=0
 # set installation location and profile name:
 
 # MY_RDS=       # set $MY_RDS here if required
-PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile_test
+PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 DIR_NAME=${version_major}.${version_minor}
-NEKRS_GENERAL_DIR=${MY_RDS}/NekRS_test
+NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 ## Don't modify this script below this line
@@ -49,9 +49,10 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-git clone git@github.com:Nek5000/nekRS.git
-cd $INSTALL_DIR
+git clone https://github.com/Nek5000/nekRS.git
+cd $INSTALL_DIR/nekRS
 git checkout v$version_major.$version_minor
+cd $INSTALL_DIR
 mv nekRS source
 
 # build NekRS
@@ -66,7 +67,7 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g nrsconfig
 
 # run config
-CC=$CC CXX=$CXX FC=$FC ./nrsconfig -D CMAKE_INSTALL_PREFIX=$dir/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
+CC=$CC CXX=$CXX FC=$FC ./nrsconfig -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
