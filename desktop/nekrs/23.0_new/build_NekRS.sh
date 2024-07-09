@@ -6,30 +6,24 @@ version_minor=0
 
 # set installation location
 
-# MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=MHD_${version_major}.${version_minor}
-NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
+DIR_NAME=${version_major}.${version_minor}
+NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
-
-# Direct install script to the nekrs_mhd repo; set as required
-NEKRS_MHD_DIR=${NEKRS_GENERAL_DIR}/nekrs_mhd
 
 ## Don't modify this script below this line
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_MHD_${version_major}-${version_minor}_profile
+PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 
-echo "module purge" > $HOME/.$PROFILE_NAME
-echo "module load rhel8/default-amp" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${PATH}:/usr/local/cuda-11.8/bin" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/lib64" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
-echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${NEKRS_TOOLS}:\${PATH}" >> $HOME/.$PROFILE_NAME
 
 echo "export NRS_RUN=$NEKRS_GENERAL_DIR/user_problems" >> $HOME/.$PROFILE_NAME
 echo "alias nrs='cd \${NRS_RUN} && ls'" >> $HOME/.$PROFILE_NAME
@@ -58,12 +52,6 @@ cd $INSTALL_DIR/nekRS
 git checkout v$version_major.$version_minor
 cd $INSTALL_DIR
 mv nekRS source
-
-# make modifications from nekrs_mhd repo
-
-cp $NEKRS_MHD_DIR/bdry.f source/3rd_party/nek5000/core/
-cp -r $NEKRS_MHD_DIR/src/* source/src/
-cp -r $NEKRS_MHD_DIR/MHD source/examples/
 
 # build NekRS
 
