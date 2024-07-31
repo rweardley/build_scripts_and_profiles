@@ -7,14 +7,16 @@ DATE_TODAY=$(date +'%y%m%d')
 
 # MY_RDS=       # set $MY_RDS here if required
 DIR_NAME=next_${DATE_TODAY}
-NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
+NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/DAWN
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 ## Don't modify this script below this line
 
+ORIGIN_DIR=$PWD
+
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_next_${DATE_TODAY}_profile
+PROFILE_NAME=nekrs_dawn_next_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load default-dawn" >> $HOME/.$PROFILE_NAME
@@ -76,4 +78,17 @@ sed -i s/'read -rsn1 key  '/''/g build.sh
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
+echo "++++++++++++++++++++++"
+
+if [ -f $ORIGIN_DIR/nrsqsub_dawn ]; then
+    echo "Found script nrsqsub_dawn"
+    echo "Installing script to \$NEKRS_HOME/bin"
+    cp $ORIGIN_DIR/nrsqsub_dawn $INSTALL_DIR/nekRS/bin
+    chmod 744 $INSTALL_DIR/nekRS/bin/nrsqsub_dawn
+else
+    echo "No nrsqsub script found"
+fi
+
+echo "++++++++++++++++++++++"
+echo "++++ All Finished ++++"
 echo "++++++++++++++++++++++"
