@@ -19,12 +19,14 @@ ORIGIN_DIR=$PWD
 PROFILE_NAME=nekrs_dawn_next_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
+echo "module load default-dawn" >> $HOME/.$PROFILE_NAME
+echo "module purge" >> $HOME/.$PROFILE_NAME
 echo "module load dawn-env/2024-07-15" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
-# echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
-# echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
-# echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
+echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
+echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 

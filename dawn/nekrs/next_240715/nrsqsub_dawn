@@ -40,6 +40,8 @@ echo "echo Running on host \`hostname\`" >>$SFILE
 echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
 
 echo "module purge" >> $SFILE
+echo "module load default-dawn" >> $SFILE
+echo "module purge" >> $SFILE
 echo "module load dawn-env/2024-07-15" >> $SFILE
 echo "module load intel-oneapi-compilers" >> $SFILE
 echo "module load intel-oneapi-mpi" >> $SFILE
