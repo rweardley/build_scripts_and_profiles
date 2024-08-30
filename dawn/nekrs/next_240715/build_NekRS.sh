@@ -9,20 +9,34 @@ DATE_TODAY=$(date +'%y%m%d')
 DIR_NAME=next_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/DAWN
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
+MODULE_DIR=${HOME}/privatemodules
 
 ## Don't modify this script below this line
 
 ORIGIN_DIR=$PWD
 
+echo "++++++++++++++++++++++"
+echo "++ Environment Setup +"
+echo "++++++++++++++++++++++"
+
+# Move modulefile to $MODULE_DIR
+if [ -f $ORIGIN_DIR/dawn-2024-07-15 ]; then
+    echo "Found modulefile dawn-2024-07-15"
+    echo "Installing modulefile to $MODULE_DIR"
+    mkdir -p $MODULE_DIR
+    cp dawn-2024-07-15 $MODULE_DIR
+else
+    echo "No modulefile found"
+fi
+
 # Write NekRS profile
 
 PROFILE_NAME=nekrs_dawn_next_${DATE_TODAY}_profile
 
-echo "module purge" > $HOME/.$PROFILE_NAME
-echo "module load default-dawn" >> $HOME/.$PROFILE_NAME
+echo "export MODULE_DIR=$MODULE_DIR" > $HOME/.$PROFILE_NAME
+
 echo "module purge" >> $HOME/.$PROFILE_NAME
-echo "module load dawn-env/2024-07-15" >> $HOME/.$PROFILE_NAME
-echo "module load rhel8/slurm" >> $HOME/.$PROFILE_NAME
+echo "module load ${MODULE_DIR}/dawn-2024-07-15" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME

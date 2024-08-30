@@ -40,10 +40,7 @@ echo "echo Running on host \`hostname\`" >>$SFILE
 echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
 
 echo "module purge" >> $SFILE
-echo "module load default-dawn" >> $SFILE
-echo "module purge" >> $SFILE
-echo "module load dawn-env/2024-07-15" >> $SFILE
-echo "module load rhel8/slurm" >> $FILE
+echo "module load $MODULE_DIR/dawn-2024-07-15" >> $SFILE
 echo "module load intel-oneapi-compilers" >> $SFILE
 echo "module load intel-oneapi-mpi" >> $SFILE
 echo "module list" >> $SFILE
@@ -83,14 +80,14 @@ chmod +x $CMD
 
 if [ $RUN_ONLY -eq 0 ]; then
   echo -e "\n# precompilation" >>$SFILE
-  CMD_build="mpiexec -n ${RANKS_FOR_BUILD} -ppn ${RANKS_FOR_BUILD} -map-by core -bind-to core ./${CMD} $bin --setup \${case_tmp} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args --build-only \${ntasks_tmp}"
+  CMD_build="mpiexec -n ${RANKS_FOR_BUILD} -ppn ${RANKS_FOR_BUILD} ./${CMD} $bin --setup \${case_tmp} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args --build-only \${ntasks_tmp}"
   add_build_CMD "$SFILE" "$CMD_build" "$TOTAL_RANKS"
 fi
 
 if [ $BUILD_ONLY -eq 0 ]; then
   link_neknek_logfile "$SFILE"
   echo -e "\n# actual run" >>$SFILE
-  echo "mpiexec -n ${TOTAL_RANKS} -ppn ${RANKS_PER_NODE} -map-by core -bind-to core ./${CMD} $bin --setup ${case} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args" >> $SFILE
+  echo "mpiexec -n ${TOTAL_RANKS} -ppn ${RANKS_PER_NODE} ./${CMD} $bin --setup ${case} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args" >> $SFILE
 fi
 sbatch $SFILE
 
