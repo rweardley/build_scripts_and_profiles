@@ -43,6 +43,7 @@ echo "module purge" >> $SFILE
 echo "module load default-dawn" >> $SFILE
 echo "module purge" >> $SFILE
 echo "module load dawn-env/2024-07-15" >> $SFILE
+echo "module load rhel8/slurm" >> $FILE
 echo "module load intel-oneapi-compilers" >> $SFILE
 echo "module load intel-oneapi-mpi" >> $SFILE
 echo "module list" >> $SFILE
