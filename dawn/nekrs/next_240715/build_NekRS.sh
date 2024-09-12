@@ -36,7 +36,7 @@ PROFILE_NAME=nekrs_dawn_next_${DATE_TODAY}_profile
 echo "export MODULE_DIR=$MODULE_DIR" > $HOME/.$PROFILE_NAME
 
 echo "module purge" >> $HOME/.$PROFILE_NAME
-echo "module load ${MODULE_DIR}/dawn-2024-07-15" >> $HOME/.$PROFILE_NAME
+echo "module load \${MODULE_DIR}/dawn-2024-07-15" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
