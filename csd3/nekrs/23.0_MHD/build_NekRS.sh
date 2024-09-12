@@ -11,6 +11,10 @@ DIR_NAME=MHD_${version_major}.${version_minor}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
+# Direct install script to the nekrs_mhd repo; set as required
+# shouldn't change the name of the directory itself
+NEKRS_MHD_DIR=${NEKRS_GENERAL_DIR}/nekRS_MHD_code
+
 ## Don't modify this script below this line
 
 # Write NekRS profile
@@ -50,7 +54,7 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-git clone git@github.com:guo-yichen/nekRS_MHD_code.git
+cp -r $NEKRS_MHD_DIR .
 
 # build NekRS
 
