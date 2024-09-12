@@ -10,9 +10,6 @@ DIR_NAME=MHD_${version_major}.${version_minor}
 NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
-# Direct install script to the nekrs_mhd repo; set as required
-NEKRS_MHD_DIR=${NEKRS_GENERAL_DIR}/nekrs_mhd
-
 ## Don't modify this script below this line
 
 # Write NekRS profile
@@ -50,21 +47,11 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-git clone https://github.com/Nek5000/nekRS.git
-cd $INSTALL_DIR/nekRS
-git checkout v$version_major.$version_minor
-cd $INSTALL_DIR
-mv nekRS source
-
-# make modifications from nekrs_mhd repo
-
-cp $NEKRS_MHD_DIR/bdry.f source/3rd_party/nek5000/core/
-cp -r $NEKRS_MHD_DIR/src/* source/src/
-cp -r $NEKRS_MHD_DIR/MHD source/examples/
+git clone git@github.com:guo-yichen/nekRS_MHD_code.git
 
 # build NekRS
 
-cd $INSTALL_DIR/source
+cd $INSTALL_DIR/nekRS_MHD_code
 
 echo "++++++++++++++++++++++"
 echo "+++ Building NekRS +++"
