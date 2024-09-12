@@ -13,7 +13,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Direct install script to the nekrs_mhd repo; set as required
 # shouldn't change the name of the directory itself
-NEKRS_MHD_DIR=${NEKRS_GENERAL_DIR}/nekRS_MHD_code
+NEKRS_MHD_DIR=${HOME}/nekRS_MHD_code
 
 ## Don't modify this script below this line
 
