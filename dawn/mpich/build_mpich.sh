@@ -1,22 +1,15 @@
 #!/bin/bash
 
-# To-Do:
-# Check requirements;
-# The autoconf macros and the configure.in scripts now require the following:
-# autoconf version 2.67 (or higher)
-# automake version 1.12.3 (or higher)
-# GNU libtool version 2.4 (or higher)
-# Set up the environment that this builds in; presumably need all same requirements
-# as NekRS, except intel-oneapi-mpi since this is taking the place of that module
-# Not sure if this will work for the interconnect etc. without careful configuration.
-# Run it on compute nodes; change make -jX
-
-# Current issues
-# Bizarrely, /usr/bin/libtool exists on login nodes, but not on Dawn nodes
+# Run it on compute nodes; change make -jX at the end for different resources
+# Builds libtool and help2man dependencies as these don't exist on Dawn compute nodes
 
 # set mpich install location
 
-INSTALLATION_PREFIX=$HOME/mpich-install
+INSTALL_DIR=$HOME/mpich_custom
+MPICH_DIR=$INSTALL_DIR/mpich-install
+HELP2MAN_DIR=$INSTALL_DIR/help2man
+LIBTOOL_DIR=$INSTALL_DIR/libtool
+DOWNLOAD_DIR=$INSTALL_DIR/downloads
 
 # set up environment
 
@@ -24,8 +17,34 @@ module purge
 module load default-dawn
 module load intel-oneapi-compilers
 
+# make directories
+mkdir -p $DOWNLOAD_DIR
+
+# build help2man
+cd $DOWNLOAD_DIR
+wget https://ftp.gnu.org/gnu/help2man/help2man-1.49.3.tar.xz
+tar -xvf help2man-1.49.3.tar.xz
+rm help2man-1.49.3.tar.xz
+cd help2man-1.49.3
+./configure --prefix=$HELP2MAN_DIR
+make
+make install
+export HELP2MAN=$HELP2MAN_DIR/bin/
+
+# build libtool
+# for help see https://savannah.gnu.org/projects/libtool/
+cd $DOWNLOAD_DIR
+wget https://ftp.gnu.org/gnu/libtool/libtool-2.4.7.tar.xz
+tar -xvf libtool-2.4.7.tar.xz
+rm libtool-2.4.7.tar.xz
+cd libtool-2.4.7
+./configure --prefix=$LIBTOOL_DIR
+make
+make install
+
 # get mpich
 
+cd $DOWNLOAD_DIR
 git clone https://github.com/pmodels/mpich.git
 cd mpich
 
@@ -35,13 +54,13 @@ git submodule update --init
 
 # generate derived files (configure scripts, C++ and F77 bindings)
 
-find . -name configure -print | xargs rm
-#./autogen.sh
-AUTOCONF='/usr/bin/autoconf' libtooldir='/usr/bin' ./autogen.sh
+export PATH=$LIBTOOL_DIR/bin:$PATH
+export ACLOCAL_PATH=$LIBTOOL_DIR/share/aclocal:$ACLOCAL_PATH
+
+./autogen.sh
 
 # build mpich
 
-./configure --prefix=$INSTALLATION_PREFIX
+./configure --prefix=$MPICH_DIR
 make -j24
 make -j24 install
-
