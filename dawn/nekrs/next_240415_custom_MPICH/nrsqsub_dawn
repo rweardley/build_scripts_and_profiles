@@ -1,0 +1,94 @@
+#!/bin/bash
+
+#--------------------------------------
+: ${PROJ_ID:="UKAEA-DAWN-GPU"}
+: ${QUEUE:="pvc"}
+: ${NEKRS_GPU_MPI:=1}
+: ${NEKRS_BACKEND:="dpcpp"}
+#--------------------------------------
+
+source $NEKRS_HOME/bin/nrsqsub_utils
+setup $# 1
+
+GPUS_PER_NODE=4
+TILES_PER_NODE=8
+RANKS_FOR_BUILD=$TILES_PER_NODE
+RANKS_PER_NODE=$TILES_PER_NODE
+TOTAL_RANKS=$(( nodes * RANKS_PER_NODE ))
+
+chk_case $TOTAL_RANKS
+
+#--------------------------------------
+# Generate the submission script
+SFILE=s.bin
+echo "#!/bin/bash" > $SFILE
+echo "#SBATCH --job-name=$jobname" >>$SFILE
+echo "#SBATCH --output=%x-%j.out" >>$SFILE
+echo "#SBATCH --account=$PROJ_ID" >>$SFILE
+echo "#SBATCH --partition=$QUEUE" >>$SFILE
+echo "#SBATCH --time=${time}:00" >>$SFILE
+echo "#SBATCH --nodes=$qnodes" >>$SFILE
+echo "#SBATCH --gres=gpu:$GPUS_PER_NODE" >>$SFILE
+echo "#SBATCH --exclusive" >>$SFILE
+
+# Unused options; kept in case these become useful
+#echo "#SBATCH --gpus-per-task=1" >>$SFILE
+#echo "#SBATCH --gpu-bind=closest" >>$SFILE
+#echo "#SBATCH --cpus-per-task=$cores_per_numa" >>$SFILE
+
+echo "echo Running on host \`hostname\`" >>$SFILE
+echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
+
+echo "module purge" >> $SFILE
+echo "module load default-dawn" >> $SFILE
+echo "module load intel-oneapi-compilers" >> $SFILE
+echo "module load $MPI_MODULE" >> $SFILE
+echo "module list" >> $SFILE
+
+echo "export I_MPI_DEBUG=5,pid" >> $SFILE
+echo "export I_MPI_OFFLOAD=1" >> $SFILE
+echo "unset I_MPI_PMI_LIBRARY" >> $SFILE
+
+echo "export I_MPI_OFFLOAD_PIN=0" >> $SFILE
+echo "export I_MPI_OFFLOAD_RDMA=1" >> $SFILE
+echo "export I_MPI_OFFLOAD_IPC=0" >> $SFILE
+
+echo "export NEOReadDebugKeys=1" >> $SFILE
+echo "export ReturnSubDevicesAsApiDevices=1" >> $SFILE
+echo "export EnableImplicitScaling=0" >> $SFILE
+echo "export ZE_AFFINITY_MASK=0,1,2,3,4,5,6,7" >> $SFILE
+echo "export ZE_FLAT_DEVICE_HIERARCHY=FLAT" >> $SFILE
+
+echo "export NEKRS_HOME=$NEKRS_HOME" >>$SFILE
+echo "export NEKRS_GPU_MPI=$NEKRS_GPU_MPI" >>$SFILE
+#echo "export MPICH_GPU_SUPPORT_ENABLED=$NEKRS_GPU_MPI" >> $SFILE
+
+# https://github.com/Nek5000/Nek5000/issues/759
+echo "export FI_CXI_RX_MATCH_MODE=hybrid" >> $SFILE 
+
+# https://github.com/stgeke/nekRS/issues/1282
+#echo "unset MPIR_CVAR_CH4_COLL_SELECTION_TUNING_JSON_FILE" >> $SFILE
+#echo "unset MPIR_CVAR_COLL_SELECTION_TUNING_JSON_FILE" >> $SFILE
+#echo "unset MPIR_CVAR_CH4_POSIX_COLL_SELECTION_TUNING_JSON_FILE" >> $SFILE
+
+CMD=.lhelper
+echo "export SELECTED_DEVICE=\$((\$MPI_LOCALRANKID % $TILES_PER_NODE))" > $CMD
+#echo "echo \"device: \"\$SELECTED_DEVICE\" NEKRS_HOME=\"\$NEKRS_HOME" >> $CMD
+echo "export ONEAPI_DEVICE_SELECTOR=\"level_zero:\$SELECTED_DEVICE\"" >> $CMD
+echo "\$*" >>$CMD
+chmod +x $CMD
+
+if [ $RUN_ONLY -eq 0 ]; then
+  echo -e "\n# precompilation" >>$SFILE
+  CMD_build="mpiexec -n ${RANKS_FOR_BUILD} -ppn ${RANKS_FOR_BUILD} -map-by core -bind-to core ./${CMD} $bin --setup \${case_tmp} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args --build-only \${ntasks_tmp}"
+  add_build_CMD "$SFILE" "$CMD_build" "$TOTAL_RANKS"
+fi
+
+if [ $BUILD_ONLY -eq 0 ]; then
+  link_neknek_logfile "$SFILE"
+  echo -e "\n# actual run" >>$SFILE
+  echo "mpiexec -n ${TOTAL_RANKS} -ppn ${RANKS_PER_NODE} -map-by core -bind-to core ./${CMD} $bin --setup ${case} --backend ${NEKRS_BACKEND} --device-id 0 $extra_args" >> $SFILE
+fi
+sbatch $SFILE
+
+# clean-up
