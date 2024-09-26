@@ -45,6 +45,10 @@ echo "module load intel-oneapi-compilers" >> $SFILE
 echo "module load $MPI_MODULE" >> $SFILE
 echo "module list" >> $SFILE
 
+echo "export CC=mpicc" >> $SFILE
+echo "export CXX=mpic++" >> $SFILE
+echo "export FC=mpif77" >> $SFILE
+
 echo "export I_MPI_DEBUG=5,pid" >> $SFILE
 echo "export I_MPI_OFFLOAD=1" >> $SFILE
 echo "unset I_MPI_PMI_LIBRARY" >> $SFILE
