@@ -2,3 +2,5 @@ slurm*
 machine*
 s.bin
 .lhelper
+log.*
+*.out
