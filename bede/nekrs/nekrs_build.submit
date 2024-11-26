@@ -34,12 +34,12 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 PROFILE_NAME=nekrs_next_${DATE_TODAY}_profile
 
-#echo "module load nvhpc" > $HOME/.$PROFILE_NAME
 echo "module load nvhpc/24.11" > $HOME/.$PROFILE_NAME
 echo "module load openmpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
+echo "export NEKRS_GPU_MPI=1" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
 echo "export NRS_RUN=$NEKRS_GENERAL_DIR/user_problems" >> $HOME/.$PROFILE_NAME
