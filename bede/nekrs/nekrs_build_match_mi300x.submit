@@ -87,8 +87,10 @@ cp $HOME/.$PROFILE_NAME log.$PROFILE_NAME
 
 cd $INSTALL_DIR
 git clone https://github.com/Nek5000/nekRS.git
+
 cd $INSTALL_DIR/nekRS
 git checkout next
+git checkout dc8679e127639f542ece5bd90273c61b36ab3e99 # match next version built on MI300X
 cd $INSTALL_DIR
 mv nekRS source
 
