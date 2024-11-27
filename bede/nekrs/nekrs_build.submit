@@ -34,7 +34,9 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 PROFILE_NAME=nekrs_next_${DATE_TODAY}_profile
 
-echo "module load nvhpc/24.11" > $HOME/.$PROFILE_NAME
+echo "module purge" > $HOME/.$PROFILE_NAME
+echo "module load slurm" >> $HOME/.$PROFILE_NAME
+echo "module load nvhpc/24.11" >> $HOME/.$PROFILE_NAME
 echo "module load openmpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
