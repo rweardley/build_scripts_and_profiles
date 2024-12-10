@@ -4,6 +4,7 @@ PROFILE_NAME="nektools_profile"
 PROJECT_DIR=/nobackup/projects/bddir20/$USER
 NEKRS_GENERAL_DIR=${PROJECT_DIR}/NekRS
 
+module purge
 module load gcc openmpi
 
 echo "export NEK5000_TOOLS=$NEKRS_GENERAL_DIR/Nek5000/bin" > $HOME/.$PROFILE_NAME
