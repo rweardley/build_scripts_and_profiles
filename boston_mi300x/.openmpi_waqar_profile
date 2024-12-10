@@ -1,0 +1,13 @@
+export PATH=$HOME/waqar/openmpi_custom/libtool/bin:$PATH
+export ACLOCAL_PATH=$HOME/waqar/openmpi_custom/libtool/share/aclocal:$ACLOCAL_PATH
+export CPATH=$HOME/waqar/openmpi_custom/openmpi-install/include:$CPATH
+export LIBRARY_PATH=$HOME/waqar/openmpi_custom/openmpmi-install/lib:$LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/waqar/openmpi_custom/openmpi-install/lib/pkgconfig:$\PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=$HOME/waqar/openmpi_custom/openmpi-install/lib:$\LD_LIBRARY_PATH
+export PATH=$HOME/waqar/openmpi_custom/openmpi-install/bin:$PATH
+export PATH=$HOME/waqar/openmpi_custom/ucx/bin:$PATH
+export CPATH=$HOME/waqar/openmpi_custom/ucx/include:$CPATH
+export CMAKE_PREFIX_PATH=$HOME/waqar/openmpi_custom/ucx:$CMAKE_PREFIX_PATH
+export LD_LIBRARY_PATH=$HOME/waqar/openmpi_custom/ucx/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$HOME/waqar/openmpi_custom/ucx/lib:$LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/waqar/openmpi_custom/ucx/lib/pkgconfig:$PKG_CONFIG_PATH
