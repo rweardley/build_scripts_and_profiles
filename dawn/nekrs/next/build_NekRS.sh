@@ -24,8 +24,8 @@ echo "module load dawn-env/2024-12-29" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers/2025.0.4" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-mpi/2021.14.1" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
-echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
-echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
@@ -50,26 +50,6 @@ env > log.env
 sycl-ls > log.sycl-ls
 xpu-smi > log.xpu-smi
 xpu-smi topology -m > log.xpu-smi-topo
-echo "+++ Available compilers: +++" > log.compilers
-echo "mpicc" >> log.compilers
-which mpicc >> log.compilers
-mpicc --version >> log.compilers
-echo "mpic++" >> log.compilers
-which mpic++ >> log.compilers
-mpic++ --version >> log.compilers
-echo "mpicxx" >> log.compilers
-which mpicxx >> log.compilers
-mpicxx --version >> log.compilers
-echo "mpifc" >> log.compilers
-which mpifc >> log.compilers
-mpif77 --version >> log.compilers
-echo "mpif77" >> log.compilers
-which mpif77 >> log.compilers
-mpif77 --version >> log.compilers
-echo "mpif90" >> log.compilers
-which mpif90 >> log.compilers
-mpif90 --version >> log.compilers
-
 
 
 cp ~/.bashrc log.bashrc

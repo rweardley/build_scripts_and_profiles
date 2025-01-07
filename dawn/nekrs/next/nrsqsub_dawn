@@ -41,8 +41,9 @@ echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
 
 echo "module purge" >> $SFILE
 echo "module load default-dawn" >> $SFILE
-echo "module load intel-oneapi-compilers" >> $SFILE
-echo "module load intel-oneapi-mpi" >> $SFILE
+echo "module load dawn-env/2024-12-29" >> $SFILE
+echo "module load intel-oneapi-compilers/2025.0.4" >> $SFILE
+echo "module load intel-oneapi-mpi/2021.14.1" >> $SFILE
 echo "module list" >> $SFILE
 
 echo "export I_MPI_DEBUG=5,pid" >> $SFILE
@@ -64,7 +65,7 @@ echo "export NEKRS_GPU_MPI=$NEKRS_GPU_MPI" >>$SFILE
 #echo "export MPICH_GPU_SUPPORT_ENABLED=$NEKRS_GPU_MPI" >> $SFILE
 
 # https://github.com/Nek5000/Nek5000/issues/759
-echo "export FI_CXI_RX_MATCH_MODE=hybrid" >> $SFILE 
+echo "export FI_CXI_RX_MATCH_MODE=hybrid" >> $SFILE
 
 # https://github.com/stgeke/nekRS/issues/1282
 #echo "unset MPIR_CVAR_CH4_COLL_SELECTION_TUNING_JSON_FILE" >> $SFILE
