@@ -67,8 +67,8 @@ echo "++++++++++++++++++++++"
 # remove user input requirements
 sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g nrsconfig
 
-# run config
-CC=$CC CXX=$CXX FC=$FC ./nrsconfig -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
+# run config (includes building GPU-enabled Hypre, only works for Nvidia GPU currently)
+CC=$CC CXX=$CXX FC=$FC ./nrsconfig -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
