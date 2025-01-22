@@ -1,51 +1,56 @@
 #!/bin/bash
 
-openfoam_dir="$HOME/OpenFOAM"
-openfoam_version="v2306"
-openfoam_profile_name="v2306_sapphire"
+OPENFOAM_DIR="$HOME/OpenFOAM"
+OPENFOAM_VERSION="v2306"
+OPENFOAM_PROFILE_NAME="v2306_sapphire"
 
-# don't change things below here
+# Don't change things below here
 
-mkdir -p $openfoam_dir
-cd $openfoam_dir
+mkdir -p $OPENFOAM_DIR
+cd $OPENFOAM_DIR || { echo "$OPENFOAM_DIR does not exist"; exit; }
 
-# get OpenFOAM
-wget https://dl.openfoam.com/source/$openfoam_version/OpenFOAM-$openfoam_version.tgz
-tar -xvf OpenFOAM-$openfoam_version.tgz
-rm OpenFOAM-$openfoam_version.tgz
-cd OpenFOAM-$openfoam_version
+# Get OpenFOAM
+wget https://dl.openfoam.com/source/$OPENFOAM_VERSION/OpenFOAM-$OPENFOAM_VERSION.tgz
+tar -xvf OpenFOAM-$OPENFOAM_VERSION.tgz
+rm OpenFOAM-$OPENFOAM_VERSION.tgz
+cd OpenFOAM-$OPENFOAM_VERSION || { echo "OpenFOAM-$OPENFOAM_VERSION does not exist"; exit; }
 
-# set OpenFOAM preferences for Intel compilers & MPI
+# Set OpenFOAM preferences for Intel compilers & MPI
+PREFS_FILE="$OPENFOAM_DIR/OpenFOAM-$OPENFOAM_VERSION/etc/prefs.sh"
 
-echo "export WM_COMPILER_TYPE=system" > $openfoam_dir/OpenFOAM-$openfoam_version/etc/prefs.sh
-echo "export WM_COMPILER=Icc" >> $openfoam_dir/OpenFOAM-$openfoam_version/etc/prefs.sh
-echo "export WM_MPLIB=INTELMPI" >> $openfoam_dir/OpenFOAM-$openfoam_version/etc/prefs.sh
+echo "export WM_COMPILER_TYPE=system" > $PREFS_FILE
+echo "export WM_COMPILER=Icc" >> $PREFS_FILE
+echo "export WM_MPLIB=INTELMPI" >> $PREFS_FILE
 
-# get third party tools
-wget https://dl.openfoam.com/source/$openfoam_version/ThirdParty-$openfoam_version.tgz
-tar -xvf ThirdParty-$openfoam_version.tgz
-rm ThirdParty-$openfoam_version.tgz
-mv ThirdParty-$openfoam_version ThirdParty
+# Get third party tools
+wget https://dl.openfoam.com/source/$OPENFOAM_VERSION/ThirdParty-$OPENFOAM_VERSION.tgz
+tar -xvf ThirdParty-$OPENFOAM_VERSION.tgz
+rm ThirdParty-$OPENFOAM_VERSION.tgz
+mv ThirdParty-$OPENFOAM_VERSION ThirdParty
 
-# write dot profile
-echo "module purge" > ~/.openfoam_"$openfoam_profile_name"_profile
-echo "module load rhel8/default-sar" >> ~/.openfoam_"$openfoam_profile_name"_profile
+# Write .profile for OpenFOAM
+PROFILE_FILE="$HOME/.openfoam_${OPENFOAM_PROFILE_NAME}_profile"
 
-echo "source $openfoam_dir/OpenFOAM-$openfoam_version/etc/bashrc" >> ~/.openfoam_"$openfoam_profile_name"_profile
-echo "export CC=mpicc" >> ~/.openfoam_"$openfoam_profile_name"_profile
-echo "export CXX=mpicxx" >> ~/.openfoam_"$openfoam_profile_name"_profile
-echo "export F90=mpif90" >> ~/.openfoam_"$openfoam_profile_name"_profile
-echo "export F77=mpif77" >> ~/.openfoam_"$openfoam_profile_name"_profile
-echo "export FC=mpif90" >> ~/.openfoam_"$openfoam_profile_name"_profile
+echo "module purge" > $PROFILE_FILE
+echo "module load rhel8/default-sar" >> $PROFILE_FILE
+echo "source $OPENFOAM_DIR/OpenFOAM-$OPENFOAM_VERSION/etc/bashrc" >> $PROFILE_FILE
+echo "export CC=mpicc" >> $PROFILE_FILE
+echo "export CXX=mpicxx" >> $PROFILE_FILE
+echo "export F90=mpif90" >> $PROFILE_FILE
+echo "export F77=mpif77" >> $PROFILE_FILE
+echo "export FC=mpif90" >> $PROFILE_FILE
 
-# source basic OpenFOAM bashrc requirements
-source ~/.openfoam_"$openfoam_profile_name"_profile
-cd $WM_PROJECT_DIR
+# Source the OpenFOAM profile
+source $PROFILE_FILE
 
+# Move to the OpenFOAM project directory
+cd $WM_PROJECT_DIR || { echo "$WM_PROJECT_DIR does not exist"; exit; }
+
+# Check system compatibility
 foamSystemCheck
 
-# start building
+# Start building OpenFOAM
+./Allwmake -j -s -q -l  # Use all available cores, reduced output, queuing and logs
 
-./Allwmake -j -s -q -l	# make using all available cores, reduced output, queuing and logs
-
+# Verify installation
 foamInstallationTest
