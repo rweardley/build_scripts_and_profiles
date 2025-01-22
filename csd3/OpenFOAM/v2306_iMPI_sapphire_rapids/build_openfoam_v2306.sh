@@ -2,7 +2,7 @@
 
 OPENFOAM_DIR="$HOME/OpenFOAM"
 OPENFOAM_VERSION="v2306"
-OPENFOAM_PROFILE_NAME="v2306_sapphire"
+OPENFOAM_PROFILE_NAME="${OPENFOAM_VERSION}_sapphire"
 
 # Don't change things below here
 
