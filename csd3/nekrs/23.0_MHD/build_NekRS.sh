@@ -4,10 +4,13 @@
 version_major=23
 version_minor=0
 
+# get date
+DATE_TODAY=$(date +'%y%m%d')
+
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=MHD_${version_major}.${version_minor}
+DIR_NAME=MHD_${version_major}.${version_minor}_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
@@ -19,7 +22,7 @@ NEKRS_MHD_DIR=${HOME}/nekRS_MHD_code
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_MHD_${version_major}-${version_minor}_profile
+PROFILE_NAME=nekrs_MHD_${version_major}-${version_minor}_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel8/default-amp" >> $HOME/.$PROFILE_NAME
