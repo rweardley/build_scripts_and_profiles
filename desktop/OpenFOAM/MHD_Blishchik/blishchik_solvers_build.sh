@@ -33,6 +33,12 @@ cd ..
 #
 
 cd mhdEpotMultiRegionFoam
+cd potentialFvPatchScalarField
+# start: fixes which should be resolved with changes to the main repo (included files which break the installation)
+rm lnInclude Make/{files~,linux64GccDPInt64Opt}
+# end
+wmake
+cd ..
 wmake
 cd ..
 
