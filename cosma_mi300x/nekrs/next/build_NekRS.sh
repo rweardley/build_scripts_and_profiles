@@ -24,7 +24,7 @@ PROFILE_NAME=nekrs_next_${DATE_TODAY}_profile
 
 echo "module load hipcc/6.3amd" > $MY_HOME/.$PROFILE_NAME
 echo "module load openmpi" >> $MY_HOME/.$PROFILE_NAME
-echo "module load binutils" >> $MY_HOME/.$PROFILE_NAME
+echo "module load ucx" >> $MY_HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $MY_HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $MY_HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $MY_HOME/.$PROFILE_NAME
@@ -74,6 +74,7 @@ echo "++++++++++++++++++++++"
 # next
 sed -i s/'read -p         "Press ENTER to continue with CC=$CC CXX=$CXX FC=$FC or ctrl-c to cancel"'/''/g build.sh
 sed -i s/'echo -e "\033[32mPlease check the summary above carefully and press ENTER to continue or ctrl-c to cancel\033[m"'/''/g build.sh
+sed -i s/'read -rsn1 key  '/''/g build.sh
 
 # run config
 ./build.sh -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.build
