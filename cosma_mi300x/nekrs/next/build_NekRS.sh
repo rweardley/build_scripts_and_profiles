@@ -75,9 +75,8 @@ echo "++++++++++++++++++++++"
 # remove user input requirements
 
 # next
-sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g build.sh
+sed -i s/'read -p         "Press ENTER to continue with CC=$CC CXX=$CXX FC=$FC or ctrl-c to cancel"'/''/g build.sh
 sed -i s/'echo -e "\033[32mPlease check the summary above carefully and press ENTER to continue or ctrl-c to cancel\033[m"'/''/g build.sh
-sed -i s/'read -rsn1 key  '/''/g build.sh
 
 # run config
 ./build.sh -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.build
