@@ -24,8 +24,6 @@ echo "module load binutils" >> $MY_HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $MY_HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $MY_HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $MY_HOME/.$PROFILE_NAME
-#echo "export OMPI_CC=hipcc" >> $MY_HOME/.$PROFILE_NAME # should get this from the module
-#echo "export OMPI_CXX=hipcc" >> $MY_HOME/.$PROFILE_NAME # should get this from the module
 echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $MY_HOME/.$PROFILE_NAME
 echo "export ROCM_HOME=/opt/rocm" >> $MY_HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $MY_HOME/.$PROFILE_NAME
@@ -45,7 +43,6 @@ mkdir -p $INSTALL_DIR
 
 mkdir $INSTALL_DIR/cmake
 cd $INSTALL_DIR/cmake
-# UNCOMMENT THESE!
 wget https://github.com/Kitware/CMake/releases/download/v3.31.6/cmake-3.31.6-linux-x86_64.tar.gz
 tar -xvf cmake-3.31.6-linux-x86_64.tar.gz
 
@@ -63,11 +60,7 @@ cp $MY_HOME/.$PROFILE_NAME log.$PROFILE_NAME
 cd $INSTALL_DIR
 git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
-git checkout next # as of 14th Nov, d0f3cff (fails, GPU-aware MPI disabled)
-#git checkout a869ca6920b79456956668a990a364bcb1e35707 # 17th Jun (fortran compiler doesn't work)
-#git checkout b2781c2ce25756bc806e9e02cf795413a1035ce4 # 22nd Sep (fortran compiler doesn't work)
-#git checkout dc8679e127639f542ece5bd90273c61b36ab3e99 # 1st Oct (Fails for same reason as next but GPU-aware MPI enabled, yay)
-### for the error, see ../NekRS/next_241114/source/build/nek5000_deps-prefix/src/nek5000_deps-build/build.log
+git checkout next
 cd $INSTALL_DIR
 mv nekRS source
 
@@ -80,9 +73,6 @@ echo "+++ Building NekRS +++"
 echo "++++++++++++++++++++++"
 
 # remove user input requirements
-
-# v23
-#sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g nrsconfig
 
 # next
 sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g build.sh
