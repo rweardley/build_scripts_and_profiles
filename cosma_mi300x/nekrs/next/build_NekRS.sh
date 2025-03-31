@@ -43,13 +43,6 @@ source $MY_HOME/.$PROFILE_NAME
 # make directory
 mkdir -p $INSTALL_DIR
 
-# build cmake (required for NekRS build)
-
-mkdir $INSTALL_DIR/cmake
-cd $INSTALL_DIR/cmake
-wget https://github.com/Kitware/CMake/releases/download/v3.31.6/cmake-3.31.6-linux-x86_64.tar.gz
-tar -xvf cmake-3.31.6-linux-x86_64.tar.gz
-
 # store details of build environment
 
 mkdir $INSTALL_DIR/setup
