@@ -10,6 +10,10 @@ DIR_NAME=next_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
+# set location of cmake binary (module not available on cosma mi300x)
+CMAKE_VERSION="3.31.6"
+CMAKE_BIN_DIR=${HOME}/cmake/cmake-${CMAKE_VERSION}-linux-x86_64/bin
+
 ## Don't modify this script below this line
 
 ORIGIN_DIR=$PWD
@@ -28,7 +32,7 @@ echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $MY_HOME/.$PROF
 echo "export ROCM_HOME=/opt/rocm" >> $MY_HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $MY_HOME/.$PROFILE_NAME
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $MY_HOME/.$PROFILE_NAME
-echo "export PATH=${INSTALL_DIR}/cmake/cmake-3.31.6-linux-x86_64/bin:\${PATH}" >> $MY_HOME/.$PROFILE_NAME
+echo "export PATH=${CMAKE_BIN_DIR}:\${PATH}" >> $MY_HOME/.$PROFILE_NAME
 echo "export NRS_RUN=$NEKRS_GENERAL_DIR/user_problems" >> $MY_HOME/.$PROFILE_NAME
 echo "alias nrs='cd \${NRS_RUN} && ls'" >> $MY_HOME/.$PROFILE_NAME
 
