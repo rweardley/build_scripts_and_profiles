@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:30:00
 #SBATCH --mail-type=NONE
-#SBATCH -p pvc
+#SBATCH -p pvc9
 
 echo -e "Changed directory to `pwd`.\n"
 echo -e "JobID: $SLURM_JOB_ID\n======"

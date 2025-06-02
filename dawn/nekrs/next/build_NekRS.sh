@@ -19,10 +19,9 @@ ORIGIN_DIR=$PWD
 PROFILE_NAME=nekrs_dawn_next_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
-echo "module load default-dawn" >> $HOME/.$PROFILE_NAME
-echo "module load dawn-env/2024-12-29" >> $HOME/.$PROFILE_NAME
-echo "module load intel-oneapi-compilers/2025.0.4" >> $HOME/.$PROFILE_NAME
-echo "module load intel-oneapi-mpi/2021.14.1" >> $HOME/.$PROFILE_NAME
+echo "module load rhel9/default-dawn" >> $HOME/.$PROFILE_NAME
+echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
+echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
@@ -46,6 +45,7 @@ mkdir -p $INSTALL_DIR
 
 mkdir $INSTALL_DIR/setup
 cd $INSTALL_DIR/setup
+module list > log.module_list
 env > log.env
 sycl-ls > log.sycl-ls
 xpu-smi > log.xpu-smi

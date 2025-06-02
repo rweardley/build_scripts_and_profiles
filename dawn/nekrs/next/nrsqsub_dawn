@@ -40,10 +40,9 @@ echo "echo Running on host \`hostname\`" >>$SFILE
 echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
 
 echo "module purge" >> $SFILE
-echo "module load default-dawn" >> $SFILE
-echo "module load dawn-env/2024-12-29" >> $SFILE
-echo "module load intel-oneapi-compilers/2025.0.4" >> $SFILE
-echo "module load intel-oneapi-mpi/2021.14.1" >> $SFILE
+echo "module load rhel9/default-dawn" >> $SFILE
+echo "module load intel-oneapi-compilers" >> $SFILE
+echo "module load intel-oneapi-mpi" >> $SFILE
 echo "module list" >> $SFILE
 
 echo "export I_MPI_DEBUG=5,pid" >> $SFILE
