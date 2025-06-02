@@ -2,7 +2,7 @@
 
 #--------------------------------------
 : ${PROJ_ID:="UKAEA-DAWN-GPU"}
-: ${QUEUE:="pvc"}
+: ${QUEUE:="pvc9"}
 : ${NEKRS_GPU_MPI:=1}
 : ${NEKRS_BACKEND:="dpcpp"}
 #--------------------------------------
