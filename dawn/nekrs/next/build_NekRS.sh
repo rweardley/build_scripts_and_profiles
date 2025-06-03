@@ -90,13 +90,12 @@ if [ -f $ORIGIN_DIR/nrsqsub_dawn ]; then
     echo "Installing script to \$NEKRS_HOME/bin"
     cp $ORIGIN_DIR/nrsqsub_dawn $INSTALL_DIR/nekRS/bin
     chmod 744 $INSTALL_DIR/nekRS/bin/nrsqsub_dawn
-elif [ -f $ORIGIN_DIR/nrsqsub_dawn_modified ]; then
+fi
+if [ -f $ORIGIN_DIR/nrsqsub_dawn_modified ]; then
     echo "Found script nrsqsub_dawn_modified"
     echo "Installing script to \$NEKRS_HOME/bin"
     cp $ORIGIN_DIR/nrsqsub_dawn_modified $INSTALL_DIR/nekRS/bin
     chmod 744 $INSTALL_DIR/nekRS/bin/nrsqsub_dawn_modified
-else
-    echo "No nrsqsub script found"
 fi
 
 echo "++++++++++++++++++++++"
