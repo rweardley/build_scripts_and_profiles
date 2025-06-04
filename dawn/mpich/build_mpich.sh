@@ -66,7 +66,7 @@ export ACLOCAL_PATH=$LIBTOOL_DIR/share/aclocal:$ACLOCAL_PATH
 
 MPICH_OPTIONS="--disable-maintainer-mode --disable-silent-rules --enable-shared --enable-static \
 --with-pm=no --enable-romio --without-ibverbs --enable-wrapper-rpath=yes --with-ch4-shmmods=posix,gpudirect \
---with-slurm=no --with-pmi=pmix --with-pmix=/usr --without-cuda --without-hip --with-device=ch4:ofi \
+--with-slurm=no --without-cuda --without-hip --with-device=ch4:ofi \
 --with-datatype-engine=yaksa --enable-timer-type=linux86_cycle \
 --enable-fast=O3,alwaysinline,avx,avx2,avx512f,ndebug,sse2 --enable-g=no --disable-debuginfo \
 --enable-error-checking=no --without-valgrind --enable-ch4-mt=runtime --with-ze=/usr --disable-opencl \
