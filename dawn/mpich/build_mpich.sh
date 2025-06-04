@@ -16,7 +16,7 @@ MPICH_MODULE=$MPICH_MODULE_DIR/mpich_custom
 # set up environment
 
 module purge
-module load default-dawn
+module load rhel9/default-dawn
 module load intel-oneapi-compilers
 
 # make directories
@@ -49,6 +49,7 @@ make install
 cd $DOWNLOAD_DIR
 git clone https://github.com/pmodels/mpich.git
 cd mpich
+git checkout 6037a7a
 
 # get submodules
 
@@ -63,7 +64,15 @@ export ACLOCAL_PATH=$LIBTOOL_DIR/share/aclocal:$ACLOCAL_PATH
 
 # build mpich
 
-./configure --prefix=$MPICH_DIR
+MPICH_OPTIONS="--disable-maintainer-mode --disable-silent-rules --enable-shared --enable-static \
+--with-pm=no --enable-romio --without-ibverbs --enable-wrapper-rpath=yes --with-ch4-shmmods=posix,gpudirect \
+--with-slurm=no --with-pmi=pmix --with-pmix=/usr --without-cuda --without-hip --with-device=ch4:ofi \
+--with-datatype-engine=yaksa --enable-timer-type=linux86_cycle \
+--enable-fast=O3,alwaysinline,avx,avx2,avx512f,ndebug,sse2 --enable-g=no --disable-debuginfo \
+--enable-error-checking=no --without-valgrind --enable-ch4-mt=runtime --with-ze=/usr --disable-opencl \
+CC=icx CXX=icpx FC=ifx F77=ifx"
+
+./configure --prefix=$MPICH_DIR $MPICH_OPTIONS
 make -j24
 make -j24 install
 
