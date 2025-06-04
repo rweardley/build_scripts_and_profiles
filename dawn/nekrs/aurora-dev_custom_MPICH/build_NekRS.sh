@@ -6,9 +6,12 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=aurora-dev_${DATE_TODAY}
+DIR_NAME=aurora-dev_custom_mpich_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/DAWN
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
+
+# uses custom-built MPICH; this assumes it is built as a custom module
+MPI_MODULE=${HOME}/privatemodules/mpich_custom
 
 ## Don't modify this script below this line
 
@@ -16,15 +19,16 @@ ORIGIN_DIR=$PWD
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_dawn_aurora-dev_${DATE_TODAY}_profile
+PROFILE_NAME=nekrs_dawn_aurora-dev_custom_mpich_${DATE_TODAY}_profile
 
-echo "module purge" > $HOME/.$PROFILE_NAME
+echo "export MPI_MODULE=$MPI_MODULE" > $HOME/.$PROFILE_NAME
+echo "module purge" >> $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-dawn" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
-echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
+echo "module load \${MPI_MODULE}" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
-echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
