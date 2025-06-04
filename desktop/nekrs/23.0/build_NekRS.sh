@@ -19,7 +19,7 @@ PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${PATH}:/usr/local/cuda-11.8/bin" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${PATH}:/usr/local/cuda-12/bin" >> $HOME/.$PROFILE_NAME
 echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/lib64" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 
