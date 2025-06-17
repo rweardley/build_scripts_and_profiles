@@ -6,7 +6,7 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=aurora-dev_custom_mpich_${DATE_TODAY}
+DIR_NAME=aurora-dev_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/DAWN
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
@@ -19,7 +19,7 @@ ORIGIN_DIR=$PWD
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_dawn_aurora-dev_custom_mpich_${DATE_TODAY}_profile
+PROFILE_NAME=nekrs_dawn_aurora-dev_${DATE_TODAY}_profile
 
 echo "export MPI_MODULE=$MPI_MODULE" > $HOME/.$PROFILE_NAME
 echo "module purge" >> $HOME/.$PROFILE_NAME
