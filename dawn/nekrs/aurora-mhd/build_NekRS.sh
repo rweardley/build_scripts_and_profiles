@@ -12,7 +12,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Direct install script to the nekrs_mhd repo; set as required
 # shouldn't change the name of the directory itself
-NEKRS_MHD_DIR=${HOME}/nekRS_MHD_code
+NEKRS_MHD_DIR=${HOME}/nekRS_MHD_code-aurora-mhd
 
 # uses custom-built MPICH; this assumes it is built as a custom module
 MPI_MODULE=${HOME}/privatemodules/mpich_custom
@@ -66,11 +66,11 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-cp -r $NEKRS_MHD_DIR .
+cp -r $NEKRS_MHD_DIR source
 
 # build NekRS
 
-cd $INSTALL_DIR/nekRS_MHD_code
+cd $INSTALL_DIR/source
 
 echo "++++++++++++++++++++++"
 echo "+++ Building NekRS +++"
