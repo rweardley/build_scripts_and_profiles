@@ -4,7 +4,7 @@
 #SBATCH -A UKAEA-AP002-CPU
 
 #SBATCH -J OpenFOAM_Build
-#SBATCH -p sapphire
+#SBATCH -p ukaea-spr
 #SBATCH --nodes=1
 #SBATCH --ntasks=112 # total tasks
 #SBATCH --time=02:00:00
