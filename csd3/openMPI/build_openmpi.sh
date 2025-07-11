@@ -40,7 +40,7 @@ wget https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.5.tar.gz
 gunzip -c $OPENMPI_VERSION.tar.gz | tar xf -
 cd $OPENMPI_VERSION
 # ./configure --prefix=$OMPI_DIR --with-ucx=$UCX_DIR --with-ucc=$UCC_DIR --with-rocm
-./configure --prefix=$OMPI_DIR --with-ucx --with-ucc
+./configure --prefix=$OMPI_DIR --with-ucx --with-ucc=$UCC_DIR
 make -j $BUILD_JOBS install
 
 # write OpenMPI profile
