@@ -26,6 +26,8 @@ echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_FC=amdflang" >> $HOME/.$PROFILE_NAME # or hipfc
+echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
+echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
