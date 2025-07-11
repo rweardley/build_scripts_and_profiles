@@ -21,8 +21,11 @@ PROFILE_NAME=nekrs_mi300x_aurora-mhd_${DATE_TODAY}_profile
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME #
-echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME #
-echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME #
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME #
+echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
+echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
+echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
+echo "export I_MPI_FC=amdflang" >> $HOME/.$PROFILE_NAME # or hipfc
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
