@@ -42,7 +42,7 @@ echo "echo Running on nodes \$SLURM_JOB_NODELIST" >>$SFILE
 echo "module purge" >> $SFILE
 echo "module load rhel9/default-dawn" >> $SFILE
 echo "module load intel-oneapi-compilers" >> $SFILE
-echo "module load ${HOME}/privatemodules/mpich_custom" >> $SFILE
+echo "module load intel-oneapi-mpi" >> $SFILE
 echo "module list" >> $SFILE
 
 echo "export I_MPI_DEBUG=5,pid" >> $SFILE # adds debug info: https://www.intel.com/content/www/us/en/docs/mpi-library/developer-guide-linux/2021-6/displaying-mpi-debug-information.html

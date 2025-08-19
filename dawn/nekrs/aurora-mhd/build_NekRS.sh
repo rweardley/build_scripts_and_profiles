@@ -14,9 +14,6 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 # shouldn't change the name of the directory itself
 NEKRS_MHD_DIR=${HOME}/nekRS_MHD_code-aurora-mhd
 
-# uses custom-built MPICH; this assumes it is built as a custom module
-MPI_MODULE=${HOME}/privatemodules/mpich_custom
-
 ## Don't modify this script below this line
 
 ORIGIN_DIR=$PWD
@@ -29,10 +26,10 @@ echo "export MPI_MODULE=$MPI_MODULE" > $HOME/.$PROFILE_NAME
 echo "module purge" >> $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-dawn" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
-echo "module load \${MPI_MODULE}" >> $HOME/.$PROFILE_NAME
+echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
-echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
@@ -77,9 +74,6 @@ echo "+++ Building NekRS +++"
 echo "++++++++++++++++++++++"
 
 # remove user input requirements
-#sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g build.sh
-#sed -i s/'echo -e "\033[32mPlease check the summary above carefully and press ENTER to continue or ctrl-c to cancel\033[m"'/''/g build.sh
-#sed -i s/'echo -e "\033[32mPlease check the summary above carefully and press ENTER to continue or ctrl-c to cancel\033[m"'/''/g build.sh
 sed -i s/'read -rsn1 key'/''/g build.sh
 
 # run config
