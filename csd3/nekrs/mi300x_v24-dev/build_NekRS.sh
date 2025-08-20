@@ -6,7 +6,7 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=aurora-dev_${DATE_TODAY}
+DIR_NAME=v24-dev_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/MI300X
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
@@ -16,7 +16,7 @@ ORIGIN_DIR=$PWD
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_mi300x_aurora-mhd_${DATE_TODAY}_profile
+PROFILE_NAME=nekrs_mi300x_v24-dev_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
@@ -26,7 +26,6 @@ echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_FC=amdflang" >> $HOME/.$PROFILE_NAME # or hipfc
-#echo "export I_MPI_FC=hipfc" >> $HOME/.$PROFILE_NAME # or amdflang
 echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
 echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
 echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
