@@ -22,8 +22,7 @@ ORIGIN_DIR=$PWD
 
 PROFILE_NAME=nekrs_dawn_aurora-mhd_${DATE_TODAY}_profile
 
-echo "export MPI_MODULE=$MPI_MODULE" > $HOME/.$PROFILE_NAME
-echo "module purge" >> $HOME/.$PROFILE_NAME
+echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-dawn" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-compilers" >> $HOME/.$PROFILE_NAME
 echo "module load intel-oneapi-mpi" >> $HOME/.$PROFILE_NAME
