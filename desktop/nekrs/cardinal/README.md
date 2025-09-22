@@ -34,7 +34,7 @@ sudo apt install flex bison gawk libtirpc-dev -y
 sudo apt install python3-dev python3-pip python3-venv -y
 ```
 
-To install the latest version of CMake, use the Kitware APT repository:
+To install a version of CMake that can be used to build Cardinal (3.28.3), use the Kitware APT repository:
 ```
 test -f /usr/share/doc/kitware-archive-keyring/copyright ||
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
@@ -43,7 +43,7 @@ sudo apt-get update
 test -f /usr/share/doc/kitware-archive-keyring/copyright ||
 sudo rm /usr/share/keyrings/kitware-archive-keyring.gpg
 sudo apt-get install kitware-archive-keyring
-sudo apt install cmake
+sudo apt install cmake=3.28.3-0kitware1ubuntu22.04.1
 ```
 
 ## Ubuntu 24.04
