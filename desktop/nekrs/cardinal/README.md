@@ -49,7 +49,7 @@ sudo apt install flex bison gawk libtirpc-dev -y
 sudo apt install python3-dev python3-pip python3-venv -y
 ```
 
-In order to use these older compilers for the NekRS build, add the following lines at the end of the section generating the NekRS profile:
+In order to use these older compilers, add the following lines at the end of the section generating the Cardinal profile:
 
 ```
 echo "export OMPI_CXX=g++-12" >> $HOME/.$PROFILE_NAME
