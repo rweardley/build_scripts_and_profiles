@@ -10,6 +10,9 @@ DIR_NAME=${version_major}.${version_minor}
 NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
+# set path to CUDA
+CUDA_DIR=/usr/local/cuda
+
 ## Don't modify this script below this line
 
 # Write NekRS profile
@@ -19,8 +22,8 @@ PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${PATH}:/usr/local/cuda-12/bin" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/lib64" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${PATH}:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
