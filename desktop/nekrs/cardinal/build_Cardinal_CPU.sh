@@ -49,7 +49,7 @@ echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.$PROFILE_NAME
 if $ENABLE_NEK ; then
     echo "export NEKRS_HOME=${INSTALL_DIR}/install" >> $HOME/.$PROFILE_NAME
 fi
-echo "source \$CARDINAL_DIR/cardinal-py-env/bin/activate" >> $HOME/.$PROFILE_NAME
+echo "source \$CARDINAL_DIR/cardinal/cardinal-py-env/bin/activate" >> $HOME/.$PROFILE_NAME
 
 source $HOME/.$PROFILE_NAME
 
