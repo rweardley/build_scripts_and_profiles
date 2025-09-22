@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # This script builds downloads and builds Cardinal.
-# To run the installation, run `./buildCardinal.sh`.
 
 ### User settings ###
 
@@ -16,7 +15,9 @@ export ENABLE_OPENMC=false
 export ENABLE_DAGMC=false
 
 # Set number of cores for compilation
-export MOOSE_JOBS=12
+export LIBMESH_JOBS=8
+export MOOSE_JOBS=8
+export JOBS=8
 
 # Set installation directory
 # Cardinal will be installed in a `cardinal` directory inside this directory
@@ -39,7 +40,7 @@ cd cardinal
 
 python3 -m venv cardinal-py-env
 
-# write .cardinal_profile
+# write Cardinal profile
 
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
