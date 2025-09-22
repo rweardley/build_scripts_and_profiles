@@ -14,7 +14,7 @@ These must be installed before running the build script.
 
 ## Ubuntu 22.04
 
-Ubuntu 22.04 comes with GCC version 11.4.0. To install cmake 3.22.1, OpenMPI 4.1.2, and gfortran 11.4.0:
+Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential). To install cmake 3.22.1, OpenMPI 4.1.2, gfortran 11.4.0 and git:
 
 ```
 sudo apt update
@@ -22,11 +22,12 @@ sudo apt upgrade -y
 sudo apt install gfortran -y
 sudo apt install cmake -y
 sudo apt install openmpi-bin libopenmpi-dev -y
+sudo apt install git -y
 ```
 
 ## Ubuntu 24.04
 
-Ubuntu 24.04 comes with GCC and gfortran version 13.3.0, however NekRS v23 is not compatible with this version of the GNU compilers. To install cmake 3.28.3, OpenMPI 4.1.6, and GNU compilers version 12.4:
+Ubuntu 24.04 comes with GCC and gfortran version 13.3.0, however NekRS v23 is not compatible with this version of the GNU compilers. To install cmake 3.28.3, OpenMPI 4.1.6, git and GNU compilers version 12.4:
 
 ```
 sudo apt update
@@ -34,6 +35,7 @@ sudo apt upgrade -y
 sudo apt install cmake -y
 sudo apt install openmpi-bin libopenmpi-dev -y
 sudo apt install gcc-12 g++12 gfortran-12 -y
+sudo apt install git -y
 ```
 
 In order to use these older compilers for the NekRS build, add the following lines at the end of the section generating the NekRS profile:
