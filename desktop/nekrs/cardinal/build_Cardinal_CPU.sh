@@ -21,7 +21,7 @@ export MOOSE_JOBS=12
 # Set installation directory
 # Cardinal will be installed in a `cardinal` directory inside this directory
 NEKRS_GENERAL_DIR=${HOME}/NekRS
-INSTALL_DIR=${NEKRS_GENERAL_DIR}/cardinal
+INSTALL_DIR=${NEKRS_GENERAL_DIR}
 
 PROFILE_NAME=cardinal_profile
 
