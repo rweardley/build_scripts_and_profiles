@@ -14,6 +14,7 @@ The Cardinal (MOOSE) build also requires the following:
 - bison
 - gawk
 - libtirpc-dev
+- CMake version 3.26.0 (more recent than required by NekRS)
 
 These must be installed before running the build script.
 - `build_NekRS_CPU.sh` installs a CPU-only version of NekRS
@@ -21,22 +22,33 @@ These must be installed before running the build script.
 
 ## Ubuntu 22.04
 
-Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential). To install cmake 3.22.1, OpenMPI 4.1.2, gfortran 11.4.0 and git:
+Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential). To install OpenMPI 4.1.2, gfortran 11.4.0, git and other requirements:
 
 ```
 sudo apt update
 sudo apt upgrade -y
 sudo apt install gfortran -y
-sudo apt install cmake -y
 sudo apt install openmpi-bin libopenmpi-dev -y
 sudo apt install git -y
 sudo apt install flex bison gawk libtirpc-dev -y
 sudo apt install python3-dev python3-pip python3-venv -y
 ```
 
+To install the latest version of CMake, use the Kitware APT repository:
+```
+test -f /usr/share/doc/kitware-archive-keyring/copyright ||
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+sudo apt-get update
+test -f /usr/share/doc/kitware-archive-keyring/copyright ||
+sudo rm /usr/share/keyrings/kitware-archive-keyring.gpg
+sudo apt-get install kitware-archive-keyring
+sudo apt install cmake
+```
+
 ## Ubuntu 24.04
 
-Ubuntu 24.04 comes with GCC and gfortran version 13.3.0, however NekRS v23 is not compatible with this version of the GNU compilers. To install cmake 3.28.3, OpenMPI 4.1.6, git and GNU compilers version 12.4:
+Ubuntu 24.04 comes with GCC and gfortran version 13.3.0, however NekRS v23 is not compatible with this version of the GNU compilers. To install cmake 3.28.3, OpenMPI 4.1.6, git, GNU compilers version 12.4 and other requirements:
 
 ```
 sudo apt update

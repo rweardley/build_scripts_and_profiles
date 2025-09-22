@@ -45,12 +45,12 @@ python3 -m venv cardinal-py-env
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif90" >> $HOME/.$PROFILE_NAME
-echo "export CARDINAL_DIR=${INSTALL_DIR}" >> $HOME/.$PROFILE_NAME
+echo "export CARDINAL_DIR=${INSTALL_DIR}/cardinal" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.$PROFILE_NAME
 if $ENABLE_NEK ; then
-    echo "export NEKRS_HOME=${INSTALL_DIR}/install" >> $HOME/.$PROFILE_NAME
+    echo "export NEKRS_HOME=${INSTALL_DIR}/cardinal/install" >> $HOME/.$PROFILE_NAME
 fi
-echo "source \$CARDINAL_DIR/cardinal/cardinal-py-env/bin/activate" >> $HOME/.$PROFILE_NAME
+echo "source \$CARDINAL_DIR/cardinal-py-env/bin/activate" >> $HOME/.$PROFILE_NAME
 
 source $HOME/.$PROFILE_NAME
 
