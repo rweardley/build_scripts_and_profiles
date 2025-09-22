@@ -43,7 +43,7 @@ sudo apt-get update
 test -f /usr/share/doc/kitware-archive-keyring/copyright ||
 sudo rm /usr/share/keyrings/kitware-archive-keyring.gpg
 sudo apt-get install kitware-archive-keyring
-sudo apt install cmake=3.28.3-0kitware1ubuntu22.04.1
+sudo apt install cmake=3.28.3-0kitware1ubuntu22.04.1 cmake-data=3.28.3-0kitware1ubuntu22.04.1
 ```
 
 ## Ubuntu 24.04
