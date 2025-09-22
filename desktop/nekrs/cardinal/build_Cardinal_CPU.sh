@@ -55,10 +55,10 @@ source $HOME/.$PROFILE_NAME
 
 # Get dependencies
 
-cardinal-py-env/bin/pip3 install setuptools
-cardinal-py-env/bin/pip3 install jinja2
-cardinal-py-env/bin/pip3 install packaging
-cardinal-py-env/bin/pip3 install pyyaml
+pip install setuptools
+pip install jinja2
+pip install packaging
+pip install pyyaml
 
 ./scripts/get-dependencies.sh
 ./contrib/moose/scripts/update_and_rebuild_petsc.sh
