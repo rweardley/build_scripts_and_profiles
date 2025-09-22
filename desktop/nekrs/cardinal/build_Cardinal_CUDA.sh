@@ -2,7 +2,6 @@
 
 # This script builds downloads and builds Cardinal.
 # To run the installation, run `./buildCardinal.sh`.
-# Cardinal and its dependencies will be installed in a `cardinal` directory in $PWD.
 
 ### User settings ###
 
@@ -21,25 +20,30 @@ export MOOSE_JOBS=12
 
 # Set installation directory
 # Cardinal will be installed in a `cardinal` directory inside this directory
-INSTALL_DIR="${HOME}/NekRS"
+NEKRS_GENERAL_DIR=${HOME}/NekRS
+INSTALL_DIR=${NEKRS_GENERAL_DIR}/cardinal
+
+PROFILE_NAME=cardinal_profile
+
+# set path to CUDA
+CUDA_DIR=/usr/local/cuda
 
 ### Don't modify anything below this ###
 
 # write .cardinal_profile
 
-echo 'PS1="\e[1;31m(Cardinal)\e[0m "$PS1' > $HOME/.cardinal_profile
-echo "export CC=mpicc" >> $HOME/.cardinal_profile
-echo "export CXX=mpicxx" >> $HOME/.cardinal_profile
-echo "export FC=mpif90" >> $HOME/.cardinal_profile
-echo "export PATH=\$PATH:/usr/local/cuda-12/bin" >> $HOME/.cardinal_profile	# desktop only
-echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/cuda-12/lib64" >> $HOME/.cardinal_profile	# desktop only
-echo "export CARDINAL_DIR=${INSTALL_DIR}/cardinal" >> $HOME/.cardinal_profile
-echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.cardinal_profile
+echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpif90" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\$PATH:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
+echo "export CARDINAL_DIR=${INSTALL_DIR}" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.$PROFILE_NAME
 if $ENABLE_NEK ; then
-    echo "export NEKRS_HOME=${INSTALL_DIR}/cardinal/install" >> $HOME/.cardinal_profile
+    echo "export NEKRS_HOME=${INSTALL_DIR}/install" >> $HOME/.$PROFILE_NAME
 fi
 
-source $HOME/.cardinal_profile
+source $HOME/.$PROFILE_NAME
 
 # Get Cardinal & dependencies
 
