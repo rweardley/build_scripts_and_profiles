@@ -27,7 +27,7 @@ PROFILE_NAME=cardinal_profile
 
 ### Don't modify anything below this ###
 
-mkdir -p $INSTALL_DIR$
+mkdir -p $INSTALL_DIR
 
 # Get Cardinal
 
