@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # This script builds downloads and builds Cardinal.
-# To run the installation, run `./buildCardinal.sh`.
 
 ### User settings ###
 
@@ -16,12 +15,14 @@ export ENABLE_OPENMC=false
 export ENABLE_DAGMC=false
 
 # Set number of cores for compilation
-export MOOSE_JOBS=12
+export LIBMESH_JOBS=8
+export MOOSE_JOBS=8
+export JOBS=8
 
 # Set installation directory
 # Cardinal will be installed in a `cardinal` directory inside this directory
 NEKRS_GENERAL_DIR=${HOME}/NekRS
-INSTALL_DIR=${NEKRS_GENERAL_DIR}/cardinal
+INSTALL_DIR=${NEKRS_GENERAL_DIR}
 
 PROFILE_NAME=cardinal_profile
 
@@ -30,26 +31,40 @@ CUDA_DIR=/usr/local/cuda
 
 ### Don't modify anything below this ###
 
-# write .cardinal_profile
+mkdir -p $INSTALL_DIR
+
+# Get Cardinal
+
+cd $INSTALL_DIR
+git clone https://github.com/neams-th-coe/cardinal.git
+cd cardinal
+
+# Create pip venv
+
+python3 -m venv cardinal-py-env
+
+# write Cardinal profile
 
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif90" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\$PATH:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
 echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
-echo "export CARDINAL_DIR=${INSTALL_DIR}" >> $HOME/.$PROFILE_NAME
+echo "export CARDINAL_DIR=${INSTALL_DIR}/cardinal" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.$PROFILE_NAME
 if $ENABLE_NEK ; then
-    echo "export NEKRS_HOME=${INSTALL_DIR}/install" >> $HOME/.$PROFILE_NAME
+    echo "export NEKRS_HOME=${INSTALL_DIR}/cardinal/install" >> $HOME/.$PROFILE_NAME
 fi
+echo "source \$CARDINAL_DIR/cardinal-py-env/bin/activate" >> $HOME/.$PROFILE_NAME
 
 source $HOME/.$PROFILE_NAME
 
-# Get Cardinal & dependencies
+# Get dependencies
 
-cd $INSTALL_DIR
-git clone https://github.com/neams-th-coe/cardinal.git
-cd cardinal
+pip install setuptools
+pip install jinja2
+pip install packaging
+pip install pyyaml
 
 ./scripts/get-dependencies.sh
 ./contrib/moose/scripts/update_and_rebuild_petsc.sh
