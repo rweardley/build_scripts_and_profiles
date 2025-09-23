@@ -2,21 +2,24 @@
 
 # set installation location
 
-DIR_NAME=aurora-mhd
+DIR_NAME=v25-pre
 NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
+
+# set path to CUDA
+CUDA_DIR=/usr/local/cuda
 
 ## Don't modify this script below this line
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_aurora-mhd_profile
+PROFILE_NAME=nekrs_v25-pre_profile
 
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${PATH}:/usr/local/cuda-12/bin" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/cuda-12/lib64" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${PATH}:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
@@ -44,11 +47,11 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-git clone git@github.com:guo-yichen/nekRS_MHD_code.git
-cd $INSTALL_DIR/nekRS_MHD_code
-git checkout aurora-mhd
+git clone https://github.com/Nek5000/nekRS.git
+cd $INSTALL_DIR/nekRS
+git checkout v25.0-rc1
 cd $INSTALL_DIR
-mv nekRS_MHD_code source
+mv nekRS source
 
 # build NekRS
 
