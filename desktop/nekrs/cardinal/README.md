@@ -22,7 +22,7 @@ These must be installed before running the build script.
 
 ## Ubuntu 22.04
 
-Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential). To install OpenMPI 4.1.2, gfortran 11.4.0, git and other requirements:
+Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential`). To install OpenMPI 4.1.2, gfortran 11.4.0, git and other requirements:
 
 ```
 sudo apt update
@@ -66,4 +66,13 @@ In order to use these older compilers, add the following lines at the end of the
 ```
 echo "export OMPI_CXX=g++-12" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_FORT=gfortran-12" >> $HOME/.$PROFILE_NAME
+```
+
+## Uninstalling Cardinal
+
+To uninstall Cardinal, delete both the Cardinal profile and the installation directory. If these were left as the defaults:
+
+```
+rm ~/.cardinal_profile
+rm -rf ~/NekRS/cardinal
 ```

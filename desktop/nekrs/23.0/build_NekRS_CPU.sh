@@ -14,7 +14,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_${version_major}-${version_minor}_profile
+PROFILE_NAME=nekrs_${version_major}.${version_minor}_profile
 
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
@@ -63,7 +63,7 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -p "Press ENTER to continue or ctrl-c to cancel"'/''/g nrsconfig
 
 # run config
-CC=$CC CXX=$CXX FC=$FC ./nrsconfig -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
+./nrsconfig -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.nrsconfig
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"

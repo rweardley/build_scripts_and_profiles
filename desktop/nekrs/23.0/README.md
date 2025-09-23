@@ -14,7 +14,7 @@ These must be installed before running the build script.
 
 ## Ubuntu 22.04
 
-Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential). To install cmake 3.22.1, OpenMPI 4.1.2, gfortran 11.4.0 and git:
+Ubuntu 22.04 comes with GCC version 11.4.0 (if this is missing, install it with `sudo apt install build-essential`). To install cmake 3.22.1, OpenMPI 4.1.2, gfortran 11.4.0 and git:
 
 ```
 sudo apt update
@@ -61,3 +61,12 @@ sudo apt install nvtop
 ```
 
 To build NekRS using this, check the `$CUDA_DIR` variable in `build_NekRS_CUDA.sh` is the correct path to the installed CUDA toolkit, then run the script.
+
+## Uninstalling NekRS
+
+To uninstall NekRS, delete both the NekRS profile and the installation directory. If these were left as the defaults:
+
+```
+rm ~/.nekrs_23.0_profile
+rm -rf ~/NekRS/23.0
+```
