@@ -34,7 +34,7 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install cmake -y
 sudo apt install openmpi-bin libopenmpi-dev -y
-sudo apt install gcc-12 g++12 gfortran-12 -y
+sudo apt install gcc-12 g++-12 gfortran-12 -y
 sudo apt install git -y
 ```
 
