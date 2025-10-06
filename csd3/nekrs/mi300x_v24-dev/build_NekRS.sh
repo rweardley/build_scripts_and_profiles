@@ -20,6 +20,7 @@ PROFILE_NAME=nekrs_mi300x_v24-dev_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
+echo "module load rocm" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME #
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME #
 echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
@@ -32,6 +33,14 @@ echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
 echo "export LD_LIBRARY_PATH=/opt/rocm/lib/llvm/lib:\${LD_LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME # fix for missing libpgmath.so
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
+echo "export FFLAGS=\"-O2 -g -march=native -ftree-vectorize -fuse-ld=bfd\"" >> $HOME/.$PROFILE_NAME
+#echo 'export CFLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export CXXFLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export FFLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export CMAKE_C_FLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export CMAKE_CXX_FLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export CMAKE_F_FLAGS="-mcmodel=medium"' >> $HOME/.$PROFILE_NAME # testing large memory model
+#echo 'export FFLAGS="-O2 -g -march=native -mtune=native -ftree-vectorize -fdefault-integer-8 -fdefault-real-8"' >> $HOME/.$PROFILE_NAME # testing build with 64 bit ints
 
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\${NEKRS_TOOLS}:\${PATH}" >> $HOME/.$PROFILE_NAME
@@ -81,7 +90,8 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -rsn1 key'/''/g build.sh
 
 # run config
-./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on 2>&1 | tee $INSTALL_DIR/setup/log.build
+#./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on 2>&1 | tee $INSTALL_DIR/setup/log.build
+./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
