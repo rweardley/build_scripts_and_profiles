@@ -4,9 +4,12 @@
 version_major=23
 version_minor=0
 
+# get date
+DATE_TODAY=$(date +'%y%m%d')
+
 # set installation location
 
-DIR_NAME=MHD_${version_major}.${version_minor}
+DIR_NAME=MHD_${version_major}.${version_minor}_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
@@ -14,7 +17,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_MHD_${version_major}-${version_minor}_profile
+PROFILE_NAME=nekrs_MHD_${version_major}-${version_minor}_${DATE_TODAY}_profile
 
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
