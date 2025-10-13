@@ -3,10 +3,10 @@
 #! Change project code as appropriate (AP001 or AP002)
 #SBATCH -A UKAEA-AP002-CPU
 
-#SBATCH -J OpenFOAM_Build
-#SBATCH -p ukaea-spr
+#SBATCH -J MPICH_Build
+#SBATCH -p ukaea-spr-hbm
 #SBATCH --nodes=1
-#SBATCH --ntasks=112 # total tasks
+#SBATCH --ntasks=24 # total tasks
 #SBATCH --time=02:00:00
 #SBATCH --mail-type=NONE
 #SBATCH --no-requeue
@@ -17,4 +17,4 @@ echo "Time: `date`"
 echo "Running on master node: `hostname`"
 echo "Current directory: `pwd`"
 
-./build_openfoam_v2306.sh
+./build_mpich_rhel9_sar.sh

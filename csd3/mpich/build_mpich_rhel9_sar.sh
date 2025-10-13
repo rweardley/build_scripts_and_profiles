@@ -5,19 +5,18 @@
 
 # set mpich install location
 
-INSTALL_DIR=$HOME/mpich_custom
+INSTALL_DIR=$HOME/mpich_custom_rhel9_sar
 MPICH_DIR=$INSTALL_DIR/mpich-install
 HELP2MAN_DIR=$INSTALL_DIR/help2man
 LIBTOOL_DIR=$INSTALL_DIR/libtool
 DOWNLOAD_DIR=$INSTALL_DIR/downloads
 MPICH_MODULE_DIR=$HOME/privatemodules
-MPICH_MODULE=$MPICH_MODULE_DIR/mpich_custom
+MPICH_MODULE=$MPICH_MODULE_DIR/mpich_custom_rhel9_sar
 
 # set up environment
 
 module purge
-module load rhel9/default-dawn
-module load intel-oneapi-compilers
+module load rhel9/default-sar
 
 # make directories
 mkdir -p $DOWNLOAD_DIR
@@ -49,7 +48,7 @@ make install
 cd $DOWNLOAD_DIR
 git clone https://github.com/pmodels/mpich.git
 cd mpich
-git checkout aurora_test
+git checkout 6037a7a
 
 # get submodules
 
@@ -67,9 +66,9 @@ export ACLOCAL_PATH=$LIBTOOL_DIR/share/aclocal:$ACLOCAL_PATH
 MPICH_OPTIONS="--disable-maintainer-mode --disable-silent-rules --enable-shared --enable-static \
 --enable-romio --without-ibverbs --enable-wrapper-rpath=yes --with-ch4-shmmods=posix,gpudirect \
 --without-cuda --without-hip --with-device=ch4:ofi \
---with-datatype-engine=dataloop --enable-timer-type=linux86_cycle \
+--with-datatype-engine=yaksa --enable-timer-type=linux86_cycle \
 --enable-fast=O3,alwaysinline,avx,avx2,avx512f,ndebug,sse2 --enable-g=no --disable-debuginfo \
---enable-error-checking=no --without-valgrind --enable-ch4-mt=runtime --with-ze=/usr --disable-opencl \
+--enable-error-checking=no --without-valgrind --enable-ch4-mt=runtime --disable-opencl \
 CC=icx CXX=icpx FC=ifx F77=ifx"
 
 ./configure --prefix=$MPICH_DIR $MPICH_OPTIONS
@@ -80,7 +79,7 @@ make -j24 install
 
 mkdir -p $MPICH_MODULE_DIR
 echo "#%Module1.0" > $MPICH_MODULE
-echo "module-whatis {Custom MPICH module for multi-node NekRS on Dawn}" >> $MPICH_MODULE
+echo "module-whatis {Custom MPICH module for Rocky9 Sapphire Rapids nodes}" >> $MPICH_MODULE
 echo "proc ModulesHelp { } { puts stderr {Name   : Custom MPICH} }" >> $MPICH_MODULE
 echo "setenv MPICH_ROOT {$MPICH_DIR}" >> $MPICH_MODULE
 echo "prepend-path CPATH {$MPICH_DIR/include}" >> $MPICH_MODULE

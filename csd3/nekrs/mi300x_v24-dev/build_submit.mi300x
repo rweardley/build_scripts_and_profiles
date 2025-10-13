@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH -J NRS_MI300X_build
+#SBATCH -A UKAEA-AP002-GPU
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:8
+#SBATCH --time=00:30:00
+#SBATCH --mail-type=NONE
+#SBATCH -p ukaea-mi300x
+
+echo -e "Changed directory to `pwd`.\n"
+echo -e "JobID: $SLURM_JOB_ID\n======"
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
+
+./build_NekRS.sh
