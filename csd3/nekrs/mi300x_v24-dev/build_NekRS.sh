@@ -86,8 +86,7 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -rsn1 key'/''/g build.sh
 
 # run config
-#./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
-./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
+./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
