@@ -27,7 +27,6 @@ echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME # or hipfc
-echo "export CXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME ## fix for rocm 7.0 dropping c++14 support?
 echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME ## fix for rocm 7.0 dropping c++14 support
 echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
 echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
@@ -35,7 +34,6 @@ echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
 echo "export LD_LIBRARY_PATH=/opt/rocm/lib/llvm/lib:\${LD_LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME # fix for missing libpgmath.so
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
-echo "export FFLAGS=\"-O2 -g -march=native -ftree-vectorize -fuse-ld=bfd\"" >> $HOME/.$PROFILE_NAME
 
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\${NEKRS_TOOLS}:\${PATH}" >> $HOME/.$PROFILE_NAME
