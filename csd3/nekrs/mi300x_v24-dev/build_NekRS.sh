@@ -26,7 +26,9 @@ echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME #
 echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
 echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
-echo "export I_MPI_FC=amdflang" >> $HOME/.$PROFILE_NAME # or hipfc
+echo "export I_MPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME # or hipfc
+echo "export CXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME ## fix for rocm 7.0 dropping c++14 support?
+echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME ## fix for rocm 7.0 dropping c++14 support
 echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
 echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
 echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
@@ -68,6 +70,7 @@ cd $INSTALL_DIR
 git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
 git checkout v24-development
+git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
 cd $INSTALL_DIR
 mv nekRS source
 
@@ -83,7 +86,8 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -rsn1 key'/''/g build.sh
 
 # run config
-./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
+#./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DENABLE_HYPRE_GPU=on -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
+./build.sh -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" 2>&1 | tee $INSTALL_DIR/setup/log.build
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
