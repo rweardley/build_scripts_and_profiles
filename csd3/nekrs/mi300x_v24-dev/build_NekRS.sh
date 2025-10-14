@@ -21,13 +21,13 @@ PROFILE_NAME=nekrs_mi300x_v24-dev_${DATE_TODAY}_profile
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
 echo "module load rocm" >> $HOME/.$PROFILE_NAME
-echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME #
-echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME #
-echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME #
-echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME #
-echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME #
-echo "export I_MPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME # or hipfc
-echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME ## fix for rocm 7.0 dropping c++14 support
+echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
+echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME
+echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME
+echo "export I_MPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME
+echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME # fix for rocm 7.0 dropping c++14 support
 echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
 echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
 echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
