@@ -73,6 +73,9 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 
 cd $INSTALL_DIR
 cp -r $NEKRS_MHD_DIR source
+cd source
+git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
+cd $INSTALL_DIR
 
 # build NekRS
 
