@@ -10,7 +10,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_aurora-mhd_profile
+PROFILE_NAME=nekrs_nekMHD_profile
 
 # Load NekRS profile
 
