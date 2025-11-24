@@ -49,7 +49,14 @@ git clone https://github.com/neams-th-coe/cardinal.git
 cd cardinal
 
 ./scripts/get-dependencies.sh
-./contrib/moose/scripts/update_and_rebuild_petsc.sh
+./contrib/moose/scripts/update_and_rebuild_petsc.sh --download-cmake
+# Use the PETSc-downloaded CMake for remainder of build
+export PATH="$PWD/contrib/moose/petsc/arch-moose/bin:$PATH"
+# optional sanity check
+echo "Checking which cmake executable is being used..."
+which cmake
+echo "Displaying CMake version..."
+cmake --version
 ./contrib/moose/scripts/update_and_rebuild_libmesh.sh --with-mpi
 ./contrib/moose/scripts/update_and_rebuild_wasp.sh
 
