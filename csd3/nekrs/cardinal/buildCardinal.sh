@@ -30,7 +30,9 @@ INSTALL_DIR="${PWD}"
 echo 'PS1="\e[1;31m(Cardinal)\e[0m "$PS1' > $HOME/.cardinal_profile
 echo "module purge" >> $HOME/.cardinal_profile
 echo "module load rhel8/default-amp" >> $HOME/.cardinal_profile
-echo "module load cmake/3.21.3/gcc-9.4.0-uefmx4t" >> $HOME/.cardinal_profile
+echo "module load python-3.9.6-gcc-5.4.0-sbr552h" >> $HOME/.cardinal_profile
+echo "module load py-pyyaml-3.11-intel-17.0.4-kqsxqja" >> $HOME/.cardinal_profile
+echo "module load py-packaging-16.8-gcc-5.4.0-x5zxajh" >> $HOME/.cardinal_profile
 echo "export CC=mpicc" >> $HOME/.cardinal_profile
 echo "export CXX=mpicxx" >> $HOME/.cardinal_profile
 echo "export FC=mpif90" >> $HOME/.cardinal_profile
