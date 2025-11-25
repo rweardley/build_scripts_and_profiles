@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #! Change project code as appropriate (AP001 or AP002)
-#SBATCH -A UKAEA-AP001-GPU
+#SBATCH -A UKAEA-AP002-GPU
 
 #SBATCH -J NRS_build
 #SBATCH --nodes=1
@@ -9,7 +9,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:30:00
 #SBATCH --mail-type=NONE
-#SBATCH -p ampere
+#SBATCH -p ukaea-amp
 
 echo -e "Changed directory to `pwd`.\n"
 echo -e "JobID: $SLURM_JOB_ID\n======"
