@@ -18,28 +18,27 @@ export METHOD="opt"
 
 #  set CUDA arch and path to CUDA
 CUDA_DIR="/usr/local/cuda"
-CUDA_ARCH_NUMBER="sm_89"
+CUDA_ARCH_NUMBER="89"
 CUDA_ARCH="sm_"$CUDA_ARCH_NUMBER
 
 # Make MFEM-MOOSE profile
-profile="mfem-moose_profile"
+PROFILE_NAME="mfem-moose_profile"
 
-echo "export CC=mpicc" > $HOME/.$profile
-echo "export CXX=mpicxx" >> $HOME/.$profile
-echo "export F90=mpif90" >> $HOME/.$profile
-echo "export F77=mpif77" >> $HOME/.$profile
-echo "export FC=mpif90" >> $HOME/.$profile
-echo "export MOOSE_DIR="$MFEM_MOOSE_DIR"" >> $HOME/.$profile
-echo "export PATH=\$PATH:"$MFEM_MOOSE_DIR >> $HOME/.$profile
+echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
+echo "export F90=mpif90" >> $HOME/.$PROFILE_NAME
+echo "export F77=mpif77" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpif90" >> $HOME/.$PROFILE_NAME
+echo "export MOOSE_DIR="$MFEM_MOOSE_DIR"" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\$PATH:"$MFEM_MOOSE_DIR >> $HOME/.$PROFILE_NAME
 echo "export PATH=\$PATH:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
 echo "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
-source $HOME/.$profile
+source $HOME/.$PROFILE_NAME
 
 # Clone MOOSE from git
 
 cd $INSTALL_DIR
-git clone https://github.com/idaholab/moose.git
-mv moose $MFEM_MOOSE_DIR
+git clone https://github.com/idaholab/moose.git mfem-moose
 cd $MFEM_MOOSE_DIR
 git checkout next
 
