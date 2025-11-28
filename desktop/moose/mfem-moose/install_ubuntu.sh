@@ -49,8 +49,8 @@ unset PETSC_DIR PETSC_ARCH
     --CXXOPTFLAGS="-O3 -march=native" \
     --COPTFLAGS="-O3 -march=native" \
     --FOPTFLAGS="-O3 -march=native" \
-    --with-cuda
-    --with-cuda-arch=$CUDA_ARCH
+    --with-cuda \
+    --with-cuda-arch=$CUDA_ARCH_NUMBER
 
 # Build libMesh
 
