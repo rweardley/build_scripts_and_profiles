@@ -17,8 +17,8 @@ The Cardinal (MOOSE) build also requires the following:
 - CMake version 3.26.0 (more recent than required by NekRS)
 
 These must be installed before running the build script.
-- `build_NekRS_CPU.sh` installs a CPU-only version of NekRS
-- `build_NekRS_CUDA.sh` installs a version of NekRS compatible with Nvidia GPUs. However the user will need to install the required CUDA prerequisites.
+- `build_Cardinal_CPU.sh` installs a CPU-only version of Cardinal
+- `build_Cardinal_CUDA.sh` installs a version of Cardinal compatible with Nvidia GPUs. However the user will need to install the required CUDA prerequisites.
 
 ## Ubuntu 22.04
 
