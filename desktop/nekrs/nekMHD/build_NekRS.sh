@@ -45,6 +45,9 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 
 cd $INSTALL_DIR
 git clone git@github.com:misunmin/nekMHD.git
+cd nekMHD
+git checkout elliptic-var-coeff-field-fix
+cd $INSTALL_DIR
 mv nekMHD source
 
 # build NekRS
