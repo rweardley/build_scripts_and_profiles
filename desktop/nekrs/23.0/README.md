@@ -41,8 +41,9 @@ sudo apt install git -y
 In order to use these older compilers for the NekRS build, add the following lines at the end of the section generating the NekRS profile:
 
 ```
+echo "export OMPI_CC=gcc-12" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_CXX=g++-12" >> $HOME/.$PROFILE_NAME
-echo "export OMPI_FORT=gfortran-12" >> $HOME/.$PROFILE_NAME
+echo "export OMPI_FC=gfortran-12" >> $HOME/.$PROFILE_NAME
 ```
 
 ## Nvidia GPU support: CUDA toolkit prerequisite

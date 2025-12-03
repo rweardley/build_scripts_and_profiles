@@ -64,8 +64,9 @@ sudo apt install python3-dev python3-pip python3-venv -y
 In order to use these older compilers, add the following lines at the end of the section generating the Cardinal profile:
 
 ```
+echo "export OMPI_CC=gcc-12" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_CXX=g++-12" >> $HOME/.$PROFILE_NAME
-echo "export OMPI_FORT=gfortran-12" >> $HOME/.$PROFILE_NAME
+echo "export OMPI_FC=gfortran-12" >> $HOME/.$PROFILE_NAME
 ```
 
 ## Uninstalling Cardinal
