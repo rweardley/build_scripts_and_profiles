@@ -27,7 +27,7 @@ echo "module load rocm/7.0.2" >> $HOME/.$PROFILE_NAME
 echo "module load openmpi/5.0.9/llvm-amdgpu-7.0.2/q2zvyeyq" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
-echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_CC=hipcc" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME
 echo "export OMPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME
