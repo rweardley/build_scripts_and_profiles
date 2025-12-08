@@ -25,6 +25,8 @@ echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
 echo "module load rocm/7.1.1-22.2.0" >> $HOME/.$PROFILE_NAME
 echo "module load openmpi/5.0.9/llvm-amdgpu-7.1.1-22.2.0/w5nji52h" >> $HOME/.$PROFILE_NAME
+echo "module load gcc" >> $HOME/.$PROFILE_NAME # try gfortran
+echo "export OMPI_FC=gfortran" >> $HOME/.$PROFILE_NAME # try gfortran
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
