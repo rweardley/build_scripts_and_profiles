@@ -6,8 +6,8 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-NODE_TYPE=QPX
-# NODE_TYPE=SPX
+# NODE_TYPE=QPX
+NODE_TYPE=SPX
 # NODE_TYPE=CPX
 DIR_NAME=v24-dev_${DATE_TODAY}_${NODE_TYPE}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/MI300X
@@ -23,7 +23,7 @@ PROFILE_NAME=nekrs_mi300x_v24-dev_${DATE_TODAY}_${NODE_TYPE}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
-echo "module load rocm" >> $HOME/.$PROFILE_NAME
+echo "module load rocm/7.0.2" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
