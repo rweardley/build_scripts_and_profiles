@@ -67,6 +67,7 @@ cd $INSTALL_DIR/nekRS
 git checkout v24-development
 git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
 cd $INSTALL_DIR
+[ -d source ] && rm -rf source
 mv nekRS source
 
 # build NekRS
