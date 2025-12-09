@@ -1,12 +1,16 @@
 diff --git a/3rd_party/nek5000/core/makenek.inc b/3rd_party/nek5000/core/makenek.inc
-index 15ae93c1..b3639c17 100644
+index 15ae93c1..a6e88c68 100644
 --- a/3rd_party/nek5000/core/makenek.inc
 +++ b/3rd_party/nek5000/core/makenek.inc
-@@ -219,7 +219,6 @@ case $FCcomp in
-                ;;
-   *flang*)     FCPP="-Mpreprocess"
+@@ -217,9 +217,8 @@ case $FCcomp in
                 FR8="-r8"
+                FF77="-Mfixed"
+                ;;
+-  *flang*)     FCPP="-Mpreprocess"
+-               FR8="-r8"
 -               FF77="-Mfixed"
++  *flang*)     FCPP="-cpp"
++               FR8="-fdefault-real-8"
                 ;;
    *nvfortran*) FCPP="-Mpreprocess"
                 FR8="-r8"
