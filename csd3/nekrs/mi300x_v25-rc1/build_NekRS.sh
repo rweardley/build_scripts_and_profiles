@@ -66,6 +66,7 @@ git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
 git checkout v25.0-rc1
 git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
+git apply $ORIGIN_DIR/llvmflang.patch # syncwarp patch
 cd $INSTALL_DIR
 mv nekRS source
 
