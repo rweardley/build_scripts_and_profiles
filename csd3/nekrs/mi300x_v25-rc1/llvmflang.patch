@@ -1,3 +1,15 @@
+diff --git a/3rd_party/nek5000/core/makenek.inc b/3rd_party/nek5000/core/makenek.inc
+index 15ae93c1..b3639c17 100644
+--- a/3rd_party/nek5000/core/makenek.inc
++++ b/3rd_party/nek5000/core/makenek.inc
+@@ -219,7 +219,6 @@ case $FCcomp in
+                ;;
+   *flang*)     FCPP="-Mpreprocess"
+                FR8="-r8"
+-               FF77="-Mfixed"
+                ;;
+   *nvfortran*) FCPP="-Mpreprocess"
+                FR8="-r8"
 diff --git a/cmake/nek5000.cmake b/cmake/nek5000.cmake
 index f197d874..8ffbf08d 100644
 --- a/cmake/nek5000.cmake
