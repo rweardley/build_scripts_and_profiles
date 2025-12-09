@@ -6,8 +6,8 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-NODE_TYPE=QPX
-# NODE_TYPE=SPX
+NODE_TYPE=SPX
+# NODE_TYPE=QPX
 # NODE_TYPE=CPX
 DIR_NAME=v25-rc1_${DATE_TODAY}_${NODE_TYPE}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/MI300X
@@ -23,18 +23,12 @@ PROFILE_NAME=nekrs_mi300x_v25-rc1_${DATE_TODAY}_${NODE_TYPE}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
-echo "module load rocm" >> $HOME/.$PROFILE_NAME
+echo "module load rocm/7.1.1-22.2.0" >> $HOME/.$PROFILE_NAME
+echo "module load openmpi/5.0.9/llvm-amdgpu-7.1.1-22.2.0/w5nji52h" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
-echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
-echo "export I_MPI_CC=hipcc" >> $HOME/.$PROFILE_NAME
-echo "export I_MPI_CXX=hipcc" >> $HOME/.$PROFILE_NAME
-echo "export I_MPI_FC=amdflang-classic" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
 echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME # fix for rocm 7.0 dropping c++14 support
-echo "export CMAKE_PREFIX_PATH=/opt/rocm:\$CMAKE_PREFIX_PATH" >> $HOME/.$PROFILE_NAME
-echo "export ROCM_HOME=/opt/rocm" >> $HOME/.$PROFILE_NAME
-echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=/opt/rocm/lib/llvm/lib:\${LD_LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME # fix for missing libpgmath.so
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 

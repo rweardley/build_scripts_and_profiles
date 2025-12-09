@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #SBATCH -J NRS_MI300X_build
-#SBATCH -A UKAEA-AP002-GPU
+#SBATCH -A TRAINING-GPU
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:1
 #SBATCH --time=00:30:00
 #SBATCH --mail-type=NONE
-##SBATCH -p ukaea-mi300x
-#SBATCH -p ukaea-mi300x-32
+#SBATCH -p ukaea-mi300x
+##SBATCH -p ukaea-mi300x-32
 ##SBATCH -p ukaea-mi300x-64
 
 echo -e "Changed directory to `pwd`.\n"
