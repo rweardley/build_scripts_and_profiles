@@ -1,0 +1,13 @@
+diff --git a/cmake/nek5000.cmake b/cmake/nek5000.cmake
+index f197d874..8ffbf08d 100644
+--- a/cmake/nek5000.cmake
++++ b/cmake/nek5000.cmake
+@@ -12,7 +12,7 @@ string(COMPARE EQUAL "${CMAKE_Fortran_COMPILER_ID}" "Flang" USING_Fortran_FLANG)
+ if(USING_Fortran_GNU OR USING_Fortran_INTEL_LLVM OR USING_Fortran_NVHPC OR USING_Fortran_FLANG)
+   message(CHECK_PASS "Found the ${CMAKE_Fortran_COMPILER_ID} Fortran compiler")
+ else()
+-  message(FATAL_ERROR "Fortran compiler ${CMAKE_Fortran_COMPILER_ID} not supported to build Nek5000 interface!")
++  message(CHECK_PASS "Fortran compiler ${CMAKE_Fortran_COMPILER_ID} may not be supported to build Nek5000 interface!")
+ endif()
+ 
+ if (${NEK5000_PPLIST} MATCHES "PARRSB")
