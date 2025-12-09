@@ -6,8 +6,8 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-# NODE_TYPE=QPX
 NODE_TYPE=SPX
+# NODE_TYPE=QPX
 # NODE_TYPE=CPX
 DIR_NAME=v24-dev_${DATE_TODAY}_${NODE_TYPE}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/MI300X
