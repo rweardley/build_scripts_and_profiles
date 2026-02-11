@@ -1,0 +1,23 @@
+diff --git a/3rd_party/occa/cmake/SetCompilerFlags.cmake b/3rd_party/occa/cmake/SetCompilerFlags.cmake
+index affad91af..b56349939 100644
+--- a/3rd_party/occa/cmake/SetCompilerFlags.cmake
++++ b/3rd_party/occa/cmake/SetCompilerFlags.cmake
+@@ -18,6 +18,8 @@ set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wwrite-strings -Wfloat-equal" "
+ # set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wstrict-prototypes -Wmissing-prototypes" "-Wundef")
+ # Disable warnings
+ set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wno-unused-parameter")
++# GCC bug: https://stackoverflow.com/questions/78759847/gcc-14-possibly-dangling-reference-to-a-temporary-warning-or-not-depending-on
++set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-Wno-dangling-reference")
+ set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "-diag-disable 11074 -diag-disable 11076")  # Intel: Disable warnings about inline limits reached
+ set_optional_cxx_flag(SUPPORTED_WARN_CXX_FLAGS "--display_error_number") # Show PGI error numbers
+ 
+diff --git a/3rd_party/occa/src/occa/internal/modes/dpcpp/polyfill.hpp b/3rd_party/occa/src/occa/internal/modes/dpcpp/polyfill.hpp
+index a2766af87..5bb646bec 100644
+--- a/3rd_party/occa/src/occa/internal/modes/dpcpp/polyfill.hpp
++++ b/3rd_party/occa/src/occa/internal/modes/dpcpp/polyfill.hpp
+@@ -1,4 +1,5 @@
+ #include <occa/defines.hpp>
++#include <cstdint>
+ 
+ #ifndef OCCA_MODES_DPCPP_POLYFILL_HEADER
+ #define OCCA_MODES_DPCPP_POLYFILL_HEADER
