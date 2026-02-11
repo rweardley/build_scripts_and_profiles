@@ -9,7 +9,7 @@ chmod +x cuda_12.2.0_535.54.03_linux.run
 ./cuda_12.2.0_535.54.03_linux.run \
   --silent \
   --toolkit \
-  --toolkitpath=$HOME/Programs/cuda/cuda-12.2 \
+  --toolkitpath=$MY_RDS/cuda/cuda-12.2 \
   --no-drm \
   --override
 

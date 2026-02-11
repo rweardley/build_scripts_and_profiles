@@ -11,7 +11,7 @@ NEKRS_GENERAL_DIR=${MY_RDS}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # set path to CUDA
-CUDA_DIR=$HOME/Programs/cuda/cuda-12.2
+CUDA_DIR=$MY_RDS/cuda/cuda-12.2
 
 ## Don't modify this script below this line
 
