@@ -18,13 +18,22 @@ PROFILE_NAME=nekrs_v26_profile
 echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${PATH}:$CUDA_DIR/bin" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$CUDA_DIR/lib64" >> $HOME/.$PROFILE_NAME
-echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 
+echo "export CUDA_DIR=$CUDA_DIR" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${PATH}:\${CUDA_DIR}/bin" >> $HOME/.$PROFILE_NAME
+echo "export CPATH=$\{CUDA_DIR}/include:\${CPATH}" >> $HOME/.$PROFILE_NAME
+echo "export LIBRARY_PATH=$\{CUDA_DIR}/lib64:\${LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$\{CUDA_DIR}/lib64" >> $HOME/.$PROFILE_NAME
+echo "export CUDAToolkit_ROOT=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
+echo "export CMAKE_CUDA_TOOLKIT_ROOT_DIR=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
+echo "export NVCC=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
+echo "export CUDACXX=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
+echo "export CMAKE_CUDA_COMPILER=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
+
+echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
+echo "export NRS_RUN=$NEKRS_GENERAL_DIR/user_problems" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\${NEKRS_HOME}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
 
-echo "export NRS_RUN=$NEKRS_GENERAL_DIR/user_problems" >> $HOME/.$PROFILE_NAME
 echo "alias nrs='cd \${NRS_RUN} && ls'" >> $HOME/.$PROFILE_NAME
 echo "alias nekrun='mpirun --mca osc ucx -np 1 nekrs --setup'" >> $HOME/.$PROFILE_NAME
 
