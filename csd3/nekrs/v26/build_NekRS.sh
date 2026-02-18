@@ -29,10 +29,10 @@ echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
 
 echo "export CUDA_DIR=$CUDA_DIR" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${PATH}:\${CUDA_DIR}/bin" >> $HOME/.$PROFILE_NAME
-echo "export CPATH=$\{CUDA_DIR}/include:\${CPATH}" >> $HOME/.$PROFILE_NAME
-echo "export LIBRARY_PATH=$\{CUDA_DIR}/lib64:\${LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$\{CUDA_DIR}/lib64" >> $HOME/.$PROFILE_NAME
+echo "export PATH=\${CUDA_DIR}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
+echo "export CPATH=\${CUDA_DIR}/include:\${CPATH}" >> $HOME/.$PROFILE_NAME
+echo "export LIBRARY_PATH=\${CUDA_DIR}/lib64:\${LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
+echo "export LD_LIBRARY_PATH=\${CUDA_DIR}/lib64:\${LD_LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
 echo "export CUDAToolkit_ROOT=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
 echo "export CMAKE_CUDA_TOOLKIT_ROOT_DIR=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
 echo "export NVCC=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
