@@ -21,10 +21,10 @@ ORIGIN_DIR=$PWD
 
 PROFILE_NAME=nekrs_v26_${DATE_TODAY}_profile
 
-echo "module purge" >> $HOME/.$PROFILE_NAME
+echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel8/default-amp" >> $HOME/.$PROFILE_NAME
 
-echo "export CC=mpicc" > $HOME/.$PROFILE_NAME
+echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpic++" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif77" >> $HOME/.$PROFILE_NAME
 
