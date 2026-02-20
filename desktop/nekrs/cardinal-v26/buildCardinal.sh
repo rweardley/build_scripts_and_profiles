@@ -2,11 +2,11 @@
 
 # This script builds downloads and builds Cardinal.
 # To run the installation, run `./buildCardinal.sh`.
-# Cardinal and its dependencies will be installed in a `cardinal_MHD` directory in $PWD.
+# Cardinal and its dependencies will be installed in a `cardinal-v26` directory in $PWD.
 
 # To create the python environment required for this script,
 # first run `setup_cardinal_build_env.sh`,
-# then load the environment with `source ~/cardinal-py-env/bin/activate`
+# then load the environment with `source cardinal-py-env/bin/activate`
 
 ### User settings ###
 
@@ -27,17 +27,16 @@ export LIBMESH_JOBS=8
 # Set installation directory
 
 INSTALL_DIR=${HOME}/NekRS
-DIR_NAME=cardinal_MHD
-ORIGIN_DIR=$PWD
+DIR_NAME=cardinal-v26
 
 # set path to CUDA
 CUDA_DIR=$HOME/Programs/cuda/cuda-12.2
 
 ### Don't modify anything below this ###
 
-# write .cardinal_MHD_profile
+# write .cardinal_v26_profile
 
-PROFILE_NAME=cardinal_MHD_profile
+PROFILE_NAME=cardinal_v26_profile
 
 echo 'PS1="\e[1;31m(Cardinal)\e[0m "$PS1' > $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
@@ -74,9 +73,6 @@ cd $INSTALL_DIR
 git clone -b update-v25 https://github.com/nandu90/cardinal.git $DIR_NAME
 cd $INSTALL_DIR/$DIR_NAME
 
-# patch Makefile to include mhd additions
-git apply $ORIGIN_DIR/nekMHD_makefile.patch
-
 ./scripts/get-dependencies.sh
 ./contrib/moose/scripts/update_and_rebuild_petsc.sh --download-cmake
 # Use the PETSc-downloaded CMake for remainder of build
@@ -87,10 +83,6 @@ echo "Displaying CMake version..."
 cmake --version
 ./contrib/moose/scripts/update_and_rebuild_libmesh.sh --with-mpi
 ./contrib/moose/scripts/update_and_rebuild_wasp.sh
-
-# MHD: replace the NekRS repo with the MHD version
-rm -rf contrib/nekRS
-git clone -b v26_mhd git@github.com:misunmin/nekMHD.git contrib/nekRS
 
 # Enable backends
 

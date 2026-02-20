@@ -1,0 +1,12 @@
+diff --git a/Makefile b/Makefile
+index 1249eb74..525bf43f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -194,6 +194,7 @@ NEKRS_INCLUDES := \
+ 	-I$(NEKRS_DIR)/src/solver/scalar/cvode \
+ 	-I$(NEKRS_DIR)/src/solver/scalar/cvode/kernels \
+ 	-I$(NEKRS_DIR)/src/solver/scalar/kernels \
++	-I$(NEKRS_DIR)/src/solver/mhd \
+ 	-I$(NEKRS_INSTALL_DIR)/gatherScatter \
+ 	-I$(NEKRS_INSTALL_DIR)/include \
+ 	-I$(NEKRS_INSTALL_DIR)/libparanumal/include \
