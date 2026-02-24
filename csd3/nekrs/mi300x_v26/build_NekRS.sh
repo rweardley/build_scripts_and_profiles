@@ -6,13 +6,9 @@ DATE_TODAY=$(date +'%y%m%d')
 # set installation location
 
 # MY_RDS=       # set $MY_RDS here if required
-DIR_NAME=nekMHD-v26_${DATE_TODAY}
+DIR_NAME=v26_${DATE_TODAY}
 NEKRS_GENERAL_DIR=${MY_RDS}/NekRS/MI300X
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
-
-# Direct install script to the nekrs_mhd repo; set as required
-# shouldn't change the name of the directory itself
-NEKRS_MHD_DIR=${HOME}/nekMHD-v26
 
 ## Don't modify this script below this line
 
@@ -20,7 +16,7 @@ ORIGIN_DIR=$PWD
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_mi300x_nekMHD_v26_${DATE_TODAY}_profile
+PROFILE_NAME=nekrs_mi300x_v26_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
 echo "module load rhel9/default-amdgpu" >> $HOME/.$PROFILE_NAME
@@ -62,7 +58,11 @@ cp ~/.$PROFILE_NAME log.$PROFILE_NAME
 # get NekRS source code
 
 cd $INSTALL_DIR
-cp -r $NEKRS_MHD_DIR source
+git clone https://github.com/Nek5000/nekRS.git
+cd $INSTALL_DIR/nekRS
+git checkout v26.0
+cd $INSTALL_DIR
+mv nekRS source
 
 # build NekRS
 
