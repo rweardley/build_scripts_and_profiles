@@ -61,6 +61,7 @@ cd $INSTALL_DIR
 git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
 git checkout v26.0
+git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
 cd $INSTALL_DIR
 mv nekRS source
 
