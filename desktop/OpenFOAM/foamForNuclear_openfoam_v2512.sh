@@ -21,6 +21,9 @@ if [[ -d $OPENFOAM_DIR ]]; then
     python -m venv venv
     source venv/bin/activate
     ./Allwmake -j$BUILD_CORES --api 2>&1 | tee log.allwmake
+    
+    # Install fluidfoam; used for tutorials
+    pip install fluidfoam
 
     # Add python environment to profile
     echo "source \${WM_PROJECT_USER_DIR}/foamForNuclear/venv/bin/activate" >> ~/.$PROFILE_NAME
