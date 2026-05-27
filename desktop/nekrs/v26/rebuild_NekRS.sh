@@ -2,7 +2,7 @@
 
 # set installation location
 
-DIR_NAME=nekMHD-v26
+DIR_NAME=v26
 NEKRS_GENERAL_DIR=${HOME}/NekRS
 INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
@@ -10,7 +10,7 @@ INSTALL_DIR=${NEKRS_GENERAL_DIR}/${DIR_NAME}
 
 # Write NekRS profile
 
-PROFILE_NAME=nekrs_nekMHD-v26_profile
+PROFILE_NAME=nekrs_v26_profile
 
 # Load NekRS profile
 
@@ -28,7 +28,7 @@ echo "++++++++++++++++++++++"
 sed -i s/'read -rsn1 key'/''/g build.sh
 
 # run config
-./build.sh -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.rebuild
+./build.sh -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS 2>&1 | tee $INSTALL_DIR/setup/log.build
 
 echo "++++++++++++++++++++++"
 echo "++++ NekRS Built +++++"
