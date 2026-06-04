@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#! Change project code as appropriate (AP001 or AP002)
+#SBATCH -A UKAEA-DAWN-GPU
+
+#SBATCH -J NRS_MHD_build
+#SBATCH --nodes=1
+#SBATCH --ntasks=24
+#SBATCH --gres=gpu:1
+#SBATCH --time=00:30:00
+#SBATCH --mail-type=NONE
+#SBATCH -p pvc9
+
+echo -e "Changed directory to `pwd`.\n"
+echo -e "JobID: $SLURM_JOB_ID\n======"
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
+
+./build_NekRS.sh
