@@ -11,7 +11,7 @@
 ### User settings ###
 
 # Set GPU backend(s)
-CUDA=true
+CUDA=false
 HIP=false
 OPENCL=false
 
@@ -29,10 +29,9 @@ export LIBMESH_JOBS=8
 INSTALL_DIR=${HOME}/NekRS
 DIR_NAME=cardinal-v26
 
-# set path to CUDA
-CUDA_DIR=$HOME/Programs/cuda/cuda-12.2
-
 ### Don't modify anything below this ###
+
+mkdir -p $INSTALL_DIR
 
 # write .cardinal_v26_profile
 
@@ -43,17 +42,6 @@ echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpif90" >> $HOME/.$PROFILE_NAME
 
-echo "export CUDA_DIR=$CUDA_DIR" >> $HOME/.$PROFILE_NAME
-echo "export PATH=\${CUDA_DIR}/bin:\${PATH}" >> $HOME/.$PROFILE_NAME
-echo "export CPATH=\${CUDA_DIR}/include:\${CPATH}" >> $HOME/.$PROFILE_NAME
-echo "export LIBRARY_PATH=\${CUDA_DIR}/lib64:\${LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
-echo "export LD_LIBRARY_PATH=\${CUDA_DIR}/lib64:\${LD_LIBRARY_PATH}" >> $HOME/.$PROFILE_NAME
-echo "export CUDAToolkit_ROOT=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
-echo "export CMAKE_CUDA_TOOLKIT_ROOT_DIR=\${CUDA_DIR}" >> $HOME/.$PROFILE_NAME
-echo "export NVCC=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
-echo "export CUDACXX=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
-echo "export CMAKE_CUDA_COMPILER=\${CUDA_DIR}/bin/nvcc" >> $HOME/.$PROFILE_NAME
-
 echo "export CARDINAL_DIR=${INSTALL_DIR}/${DIR_NAME}" >> $HOME/.$PROFILE_NAME
 echo "export PATH=\$PATH:\$CARDINAL_DIR" >> $HOME/.$PROFILE_NAME
 if $ENABLE_NEK ; then
@@ -62,16 +50,12 @@ fi
 
 source $HOME/.$PROFILE_NAME
 
-# check we are using the expected CUDA toolkit
-echo "CUDA nvcc:" "$(command -v nvcc)"
-nvcc --version
-
 # Get Cardinal & dependencies
 
 cd $INSTALL_DIR
-# git clone https://github.com/neams-th-coe/cardinal.git $DIR_NAME
-git clone -b update-v25 https://github.com/nandu90/cardinal.git $DIR_NAME
+git clone -b v26-update https://github.com/nandu90/cardinal.git $DIR_NAME
 cd $INSTALL_DIR/$DIR_NAME
+git checkout 09ed6437f5b173c2f2355024f9fcf14df0c5d737
 
 ./scripts/get-dependencies.sh
 ./contrib/moose/scripts/update_and_rebuild_petsc.sh --download-cmake
