@@ -1,0 +1,16 @@
+diff --git a/3rd_party/hypre/src/utilities/_hypre_utilities.hpp b/3rd_party/hypre/src/utilities/_hypre_utilities.hpp
+index 2b1f2ad1..a610e692 100644
+--- a/3rd_party/hypre/src/utilities/_hypre_utilities.hpp
++++ b/3rd_party/hypre/src/utilities/_hypre_utilities.hpp
+@@ -1328,11 +1328,6 @@ T __shfl_xor_sync(hypre_mask mask, T val, hypre_int lanemask, hypre_int width =
+    return __shfl_xor(val, lanemask, width);
+ }
+ 
+-static __device__ __forceinline__
+-void __syncwarp()
+-{
+-}
+-
+ #endif // #if defined(HYPRE_USING_HIP) || (CUDA_VERSION < 9000)
+ 
+ static __device__ __forceinline__
