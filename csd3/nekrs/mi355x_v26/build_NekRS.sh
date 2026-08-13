@@ -19,7 +19,7 @@ ORIGIN_DIR=$PWD
 PROFILE_NAME=nekrs_mi355x_v26_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
-echo "module load rhel9/mi350x/base" >> $HOME/.$PROFILE_NAME
+echo "module load rhel9/mi355x/base" >> $HOME/.$PROFILE_NAME
 echo "module load rocm/7.14" >> $HOME/.$PROFILE_NAME
 # echo "export CC=amdclang; export CXX=amdclang++; export FC=amdflang" >> $HOME/.$PROFILE_NAME # RSE
 echo "module load openmpi/5.0.10/" >> $HOME/.$PROFILE_NAME
