@@ -60,6 +60,7 @@ git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
 git checkout v26.0
 git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
+git apply $ORIGIN_DIR/hypre_cmake.patch # hypre cmake patch
 cd $INSTALL_DIR
 mv nekRS source
 
