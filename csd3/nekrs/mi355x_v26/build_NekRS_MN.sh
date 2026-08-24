@@ -77,6 +77,7 @@ sed -i s/'read -rsn1 key'/''/g build.sh
 # run config
 CC=mpicc CXX=mpicxx FC=mpif77 ./build.sh \
     -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS \
+    -DENABLE_HYPRE_GPU=on \
     -DCMAKE_HIP_ARCHITECTURES=gfx950 \
     -DNEKRS_Fortran_FLAGS="-01" \
     -DNEKRS_GPU_MPI=ON \
