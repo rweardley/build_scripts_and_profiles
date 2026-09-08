@@ -82,7 +82,6 @@ sed -i s/'read -rsn1 key'/''/g build.sh
 ./build.sh \
     -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS \
     -DENABLE_HYPRE_GPU=on \
-    -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" \
     -DNEKRS_GPU_MPI=ON \
     2>&1 | tee $INSTALL_DIR/setup/log.build
 
