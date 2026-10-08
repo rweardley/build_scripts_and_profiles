@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH -J NRS_build
+#SBATCH -A UKAEA-AP002-CPU
+#SBATCH --nodes=1
+#SBATCH --ntasks=112
+#SBATCH --time=00:30:00
+#SBATCH --mail-type=NONE
+#SBATCH -p ukaea-spr-hbm
+
+echo -e "Changed directory to `pwd`.\n"
+echo -e "JobID: $SLURM_JOB_ID\n======"
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
+
+./build_NekRS.sh
