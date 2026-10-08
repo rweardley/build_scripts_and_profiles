@@ -19,13 +19,11 @@ ORIGIN_DIR=$PWD
 PROFILE_NAME=nekrs_spr-hbm_v26_${DATE_TODAY}_profile
 
 echo "module purge" > $HOME/.$PROFILE_NAME
-# echo "module load rhel9/mi355x/base" >> $HOME/.$PROFILE_NAME
-# echo "module load rocm/7.14" >> $HOME/.$PROFILE_NAME
-# echo "module load openmpi/5.0.10/" >> $HOME/.$PROFILE_NAME
-# echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
-# echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
-# echo "export FC=mpifort" >> $HOME/.$PROFILE_NAME
-# echo "export HIPCXXFLAGS=\"-std=c++17\"" >> $HOME/.$PROFILE_NAME # fix for rocm 7.0 dropping c++14 support
+echo "module load rhel9/default-sar" >> $HOME/.$PROFILE_NAME
+echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
+echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
+echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
+echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
@@ -59,8 +57,6 @@ cd $INSTALL_DIR
 git clone https://github.com/Nek5000/nekRS.git
 cd $INSTALL_DIR/nekRS
 git checkout v26.0
-# git apply $ORIGIN_DIR/syncwarp.patch # syncwarp patch
-# git apply $ORIGIN_DIR/hypre_cmake.patch # hypre cmake patch
 cd $INSTALL_DIR
 mv nekRS source
 
@@ -78,9 +74,6 @@ sed -i s/'read -rsn1 key'/''/g build.sh
 # run config
 ./build.sh \
     -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/nekRS \
-    # -DENABLE_HYPRE_GPU=on \
-    -DNEKRS_Fortran_FLAGS="-fuse-ld=bfd" \
-    # -DNEKRS_GPU_MPI=ON \
     2>&1 | tee $INSTALL_DIR/setup/log.build
 
 echo "++++++++++++++++++++++"
