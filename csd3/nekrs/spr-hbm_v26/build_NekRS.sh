@@ -23,8 +23,6 @@ echo "module load rhel9/default-sar" >> $HOME/.$PROFILE_NAME
 echo "export CC=mpicc" >> $HOME/.$PROFILE_NAME
 echo "export CXX=mpicxx" >> $HOME/.$PROFILE_NAME
 echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
-echo "export I_MPI_CXX=icx" >> $HOME/.$PROFILE_NAME
-echo "export I_MPI_CC=icx" >> $HOME/.$PROFILE_NAME
 echo "export I_MPI_FC=gfortran" >> $HOME/.$PROFILE_NAME
 echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
