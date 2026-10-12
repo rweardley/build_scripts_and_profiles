@@ -26,7 +26,9 @@ echo "export FC=mpifc" >> $HOME/.$PROFILE_NAME
 echo "export I_MPI_CC=gcc" >> $HOME/.$PROFILE_NAME
 echo "export I_MPI_CXX=g++" >> $HOME/.$PROFILE_NAME
 echo "export I_MPI_FC=gfortran" >> $HOME/.$PROFILE_NAME
-echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME
+echo "export UCX_TLS=dc_x,sm,self" >> $HOME/.$PROFILE_NAME # prevents a hang on inter-node communication during setup
+echo "export UCX_WARN_UNUSED_ENV_VARS=n" >> $HOME/.$PROFILE_NAME # suppress warnings
+echo "unset I_MPI_PMI_LIBRARY" >> $HOME/.$PROFILE_NAME # suppress warnings
 echo "export NEKRS_HOME=$INSTALL_DIR/nekRS" >> $HOME/.$PROFILE_NAME
 echo "export NEKRS_TOOLS=$INSTALL_DIR/build/3rd_party/nek5000/bin" >> $HOME/.$PROFILE_NAME
 
